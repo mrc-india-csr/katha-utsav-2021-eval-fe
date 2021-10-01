@@ -4,6 +4,9 @@ import {renderToString} from 'react-dom/server'
 import Dashboard from '../pages/dashboard';
 import Auth from '../pages/auth';
 import {VerifyLogin} from "./middleware/verifyLogin";
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { rootReducer } from '../client/reducers';
 
 const router = express.Router();
 
@@ -26,7 +29,10 @@ router.get('/login', async (req, res) => {
 })
 
 router.get('/dashboard', VerifyLogin, async (req, res) => {
-  const reactComp = renderToString(<Dashboard/>)
+  const store = createStore(rootReducer);
+  const reactComp = renderToString(<Provider store={store}>
+      <Dashboard/>
+    </Provider>)
   res.cookie('csrfToken', req.csrfToken ? req.csrfToken() : null, {
     sameSite: true,
     httpOnly: true,
@@ -36,3 +42,4 @@ router.get('/dashboard', VerifyLogin, async (req, res) => {
 })
 
 export default router
+
