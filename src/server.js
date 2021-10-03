@@ -45,7 +45,7 @@ app.use('/api', api);
 const port = process.env.PORT || 3000
 
 app.listen(port, function listenHandler() {
-  console.info(`Running on ${port}`);
+  console.info(`Running on port ${port}`);
   if (process.send) {
     process.send({event: 'online', url: 'http://localhost:3000/'});
   }

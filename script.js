@@ -36,11 +36,7 @@ webpack(webpackConfig, (err, stats) => {
     })
   })
 
-  console.log()
-
-  console.log('\x1b[38;2;255;200;0mStarting the developemnt server\x1b[0m')
-
-  console.log()
+  console.log('\x1b[38;2;255;200;0mStarting the development server\x1b[0m')
 
   require('@babel/register')(babelServerConfig)
 
