@@ -16,7 +16,7 @@ export const VerifyLogin = async (req, res, next) => {
           res.redirect('/login');
         } else {
           const queryResponse = await pool.query(loginQuery, [decodedToken.email]);
-          if (!(queryResponse.rows.length > 0) || !queryResponse.rows[0].isActive) {
+          if (!(queryResponse.rows.length > 0) || !queryResponse.rows[0].jury_isActive) {
             res.clearCookie('jwt');
             res.redirect('/login');
           } else {

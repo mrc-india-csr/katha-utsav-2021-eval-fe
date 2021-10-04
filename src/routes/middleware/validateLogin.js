@@ -11,10 +11,10 @@ export const ValidateLogin = async (req, res, next) => {
     const queryResponse = await pool.query(loginQuery, [email]);
     if (!(queryResponse.rows.length > 0)) {
       res.status(401).send('Login failed, Invalid Email id.');
-    } else if(!queryResponse.rows[0].isActive) {
+    } else if(!queryResponse.rows[0].jury_isActive) {
       res.status(401).send('Login failed, Your access has been blocked.');
     } else {
-      res.cookie('jwt', createJwtToken(email, queryResponse.rows[0].id), {
+      res.cookie('jwt', createJwtToken(email, queryResponse.rows[0].jury_id), {
         sameSite: true,
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
