@@ -7,6 +7,7 @@ import {VerifyLogin} from "./middleware/verifyLogin";
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { rootReducer } from '../client/reducers';
+import {CheckIfLoggedIn} from "./middleware/checkIfLoggedIn";
 
 const router = express.Router();
 
@@ -18,7 +19,7 @@ router.get('/', VerifyLogin, async (req, res) => {
   res.redirect('/dashboard');
 })
 
-router.get('/login', async (req, res) => {
+router.get('/login', CheckIfLoggedIn, async (req, res) => {
   const reactComp = renderToString(<Auth/>)
   res.cookie('csrfToken', req.csrfToken ? req.csrfToken() : null, {
     sameSite: true,
