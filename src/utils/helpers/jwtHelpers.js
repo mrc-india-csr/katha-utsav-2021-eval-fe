@@ -3,8 +3,8 @@ const config = require('../../config');
 
 const { jwtSecretKey, jwtValidity } = config
 
-export const createJwtToken = (email) => {
-  return jwt.sign({ email }, jwtSecretKey, {
+export const createJwtToken = (email, juryId) => {
+  return jwt.sign({ email, juryId }, jwtSecretKey, {
     expiresIn: parseInt(jwtValidity),
   });
 }

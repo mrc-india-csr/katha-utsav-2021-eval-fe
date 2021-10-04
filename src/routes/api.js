@@ -2,7 +2,6 @@ import express from 'express'
 import {validate} from 'express-validation';
 import {loginValidationSchema} from '../utils/validationHelpers';
 import {ValidateLogin} from "./middleware/validateLogin";
-import {createJwtToken} from "../utils/helpers/jwtHelpers";
 
 const router = express.Router()
 
