@@ -23,10 +23,10 @@ app.use(bodyParser.urlencoded({
   })
 );
 
-// app.use(csurf({
-//   cookie: true,
-//   value: (req) => (req.cookies.csrfToken)
-// }));
+app.use(csurf({
+  cookie: true,
+  value: (req) => (req.cookies.csrfToken)
+}));
 
 app.set('views', path.join(__dirname, 'static', 'views'))
 app.set('view engine', 'ejs')
