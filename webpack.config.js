@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 const production = process.env.NODE_ENV === 'production'
 require("babel-polyfill");
 const pages = ['auth', 'dashboard']
@@ -68,7 +69,19 @@ const config = [{
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.wasm', '.mjs', '*']
+    extensions: ['.js', '.jsx', '.json', '.wasm', '.mjs', '*'],
+    fallback: {
+      "fs": false,
+      "tls": false,
+      "net": false,
+      "path": false,
+      "zlib": false,
+      "http": false,
+      "https": false,
+      "stream": false,
+      "dns": false,
+      "pg-native": false
+    }
   },
 
   optimization: {
@@ -90,7 +103,8 @@ const config = [{
       chunkFilename: production ? 'css/[contentHash].css' : 'css/[id].css'
     }),
     // Ejs pages
-    ...generateHtml(pages)
+    ...generateHtml(pages),
+    new NodePolyfillPlugin()
   ]
 }]
 
