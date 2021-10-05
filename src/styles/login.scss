@@ -62,11 +62,40 @@
   .emailInput{
     width: 30vw;
     height: 40px;
-    left: 685px;
-    top: 531px;
     border: 1px solid #6D6C6C;
     box-sizing: border-box;
     margin-left: 25px;
     border-radius: 4px;
     padding: 10px;
+  }
+
+  @media screen and (max-width:480px){
+    .title{
+        font-family: Poppins;
+        font-size: 20px;
+        display: inline;
+        margin: 1px;
+        position: absolute;
+      }
+      .subTitle{
+        margin-left: 12%;
+      }
+      .loginCard{
+        margin: 50% 5% 2% 5%;
+        width: 300px;
+      }
+      .logo{
+        margin-right: 10px;
+        width: 25px;
+        height: 25px;
+        display: inline;
+      }
+      .emailInput{
+        width: 60vw;
+        margin-left: 45px;
+      }
+      .loginButton{
+        width: 60vw;
+        margin-left: 45px;
+      }
   }
