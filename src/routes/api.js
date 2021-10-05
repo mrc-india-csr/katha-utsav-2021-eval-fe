@@ -18,7 +18,18 @@ router.get('/logout', (req, res) => {
 })
 
 router.get('/student_details', validate(studentDetailsValidationSchema, {}, {}), ExtractJuryDetails, FetchStudentDetails, (req, res) => {
-  res.status(200).json(res.locals.studentDetails);
+  const currentPage = parseInt(req.body.page);
+  const totalPages = Math.ceil(res.locals.totalStudentsCount / req.body.limit);
+  const body = {
+    totalCount: res.locals.totalStudentsCount,
+    currentPage,
+    totalPages,
+    prevEnabled: currentPage > 1,
+    nextEnabled: currentPage < totalPages,
+    studentsList: res.locals.studentDetails
+  }
+
+  res.status(200).json(body);
 });
 
 router.get('/download_story/:path', (req, res, next) => {

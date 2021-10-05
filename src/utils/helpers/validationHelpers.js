@@ -8,7 +8,9 @@ export const loginValidationSchema = {
 
 export const studentDetailsValidationSchema = {
   body: Joi.object().keys({
-    offset: Joi.number().required(),
+    page: Joi.number().required(),
     assignedOnly: Joi.bool().required(),
+    filter: Joi.string().required(),
+    limit: Joi.number().required(),
   }),
 }
