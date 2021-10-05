@@ -7,6 +7,8 @@ import {VerifyLogin} from "./middleware/verifyLogin";
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { rootReducer } from '../client/reducers';
+import {CheckIfLoggedIn} from "./middleware/checkIfLoggedIn";
+const statusCount = require('./middleware/statusCount');
 
 const router = express.Router();
 
@@ -18,7 +20,7 @@ router.get('/', VerifyLogin, async (req, res) => {
   res.redirect('/dashboard');
 })
 
-router.get('/login', async (req, res) => {
+router.get('/login', CheckIfLoggedIn, async (req, res) => {
   const reactComp = renderToString(<Auth/>)
   res.cookie('csrfToken', req.csrfToken ? req.csrfToken() : null, {
     sameSite: true,
@@ -39,6 +41,10 @@ router.get('/dashboard', VerifyLogin, async (req, res) => {
     secure: process.env.NODE_ENV === 'production'
   });
   res.status(200).render('pages/dashboard', {reactApp: reactComp})
+})
+
+router.get('/statusCount', statusCount, async (req, res) => {
+  res.status(200).send(res.locals);
 })
 
 export default router

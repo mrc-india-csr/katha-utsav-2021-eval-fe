@@ -14,7 +14,7 @@ export const ValidateLogin = async (req, res, next) => {
     } else if(!queryResponse.rows[0].jury_isActive) {
       res.status(401).send('Login failed, Your access has been blocked.');
     } else {
-      res.cookie('jwt', createJwtToken(email, queryResponse.rows[0].jury_id), {
+      res.cookie('jwt', createJwtToken(email, queryResponse.rows[0].jury_id, queryResponse.rows[0].jury_name), {
         sameSite: true,
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
