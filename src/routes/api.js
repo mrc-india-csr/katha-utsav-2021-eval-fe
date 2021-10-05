@@ -5,7 +5,6 @@ import {ValidateLogin} from "./middleware/validateLogin";
 import {FetchStudentDetails} from "./middleware/fetchStudentDetails";
 import {ExtractJuryDetails} from "./middleware/extractJuryDetails";
 import {UpdateDownloadUrl} from "./middleware/updateDownloadUrl";
-import config from "../config";
 
 const router = express.Router()
 
@@ -31,12 +30,6 @@ router.get('/student_details', validate(studentDetailsValidationSchema, {}, {}),
   }
 
   res.status(200).json(body);
-});
-
-router.get('/download_story/:path', (req, res, next) => {
-  const { s3Folder } = config
-  console.log(s3Folder + req.params.path);
-  res.status(200).send('success');
 });
 
 export default router;
