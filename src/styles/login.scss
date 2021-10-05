@@ -1,0 +1,101 @@
+.body{
+    background-color: #FFF5CA;
+    height: 98%;
+    width: 99%;
+    position: absolute;
+  }
+  .loginCard{
+      background-color: white;
+      margin:10% 30% 10% 30%;
+      width: 500px;
+      height: 200px;
+      position:relative;
+      padding:5vw;
+      border-radius: 8px;
+      border: 1px solid #DFE0EB;
+  }
+.loginForm{
+    margin:"10% 30% 10% 30%";
+    width: "500px";
+    height: "200px";
+    position:"relative";
+    padding:"5vw";
+  }
+  .loginButton{
+    color: white;
+    background-color: #98248D;
+    width: 30vw;
+    height: 40px;
+    border: none;
+    margin-left: 25px;
+    border-radius: 4px;
+  }
+  .textfield{
+    width:30vw;
+    margin-left: 25px;
+  }
+  .logo{
+    margin-right:25px;
+    width: 50px;
+    height: 50px;
+    display:inline;
+  }
+  .title{
+    font-family: Poppins;
+    font-size: 30px;
+    display: inline;
+    margin: 10px;
+    position: absolute;
+  }
+  .subTitle{
+    position: absolute;
+    width: 219px;
+    height: 32px;
+    font-family: Poppins;
+    margin-left: 20%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 32px;
+    text-align: center;
+  }
+  .emailInput{
+    width: 30vw;
+    height: 40px;
+    border: 1px solid #6D6C6C;
+    box-sizing: border-box;
+    margin-left: 25px;
+    border-radius: 4px;
+    padding: 10px;
+  }
+
+  @media screen and (max-width:480px){
+    .title{
+        font-family: Poppins;
+        font-size: 20px;
+        display: inline;
+        margin: 1px;
+        position: absolute;
+      }
+      .subTitle{
+        margin-left: 12%;
+      }
+      .loginCard{
+        margin: 50% 5% 2% 5%;
+        width: 300px;
+      }
+      .logo{
+        margin-right: 10px;
+        width: 25px;
+        height: 25px;
+        display: inline;
+      }
+      .emailInput{
+        width: 60vw;
+        margin-left: 45px;
+      }
+      .loginButton{
+        width: 60vw;
+        margin-left: 45px;
+      }
+  }

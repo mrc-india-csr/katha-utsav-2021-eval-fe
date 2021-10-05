@@ -29,3 +29,8 @@ export const countStudentDetailsQueryBuilder = (conditionObject, userData) => {
 
   return `select count (*) from(${builtQuery}) as formattedStudentDetails`;
 }
+
+export const pendingStatusCountQuery = `select COUNT(*) from ${pgDatabaseSchema}.students where evaluation_id is null`;
+export const approvedStatusCountQuery = `select COUNT(*) from ${pgDatabaseSchema}.evaluations where evaluation_status = $1`;
+export const declinedStatusCountQuery = `select COUNT(*) from ${pgDatabaseSchema}.evaluations where evaluation_status = $1`;
+

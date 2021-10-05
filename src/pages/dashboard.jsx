@@ -1,6 +1,7 @@
 import React from 'react'
 import '../styles/global.scss'
 import { makeStyles } from "@material-ui/core/styles";
+import { connect } from 'react-redux';
 import Button from "@material-ui/core/Button";
 import AppBar from "@material-ui/core/AppBar";
 import ToolBar from "@material-ui/core/ToolBar";
@@ -79,7 +80,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const classes = useStyles();
   const logoutClick = () => {
     console.log('logout called');
@@ -89,6 +90,8 @@ const Dashboard = () => {
       console.log(e)
     });
   }
+
+  const totalCount = parseInt(props.pendingCount) + parseInt(props.approvedCount) + parseInt(props.declinedCount);
 
   return(
     <div className={classes.dashboard}>
@@ -104,30 +107,38 @@ const Dashboard = () => {
       </AppBar>
 
       <Grid style={{margin:"0 0 10px 100px"}}>
-        <Typography className={classes.dashboardTitle}>Dashboard (500)</Typography>
+        <Typography className={classes.dashboardTitle}>Dashboard ({totalCount})</Typography>
       </Grid>
       <Grid style={{margin:"0 0 10px 100px", width: '90%'}} container>
         <Grid item className={classes.tile}>
           <Paper className={classes.paper}>
-            <Typography className={classes.status}>100</Typography>
+            <Typography className={classes.status}>{props.pendingCount}</Typography>
             <Typography style={{fontFamily: 'Poppins', fontSize:'18px'}}>PENDING</Typography>
           </Paper>
         </Grid>
         <Grid item className={classes.tile}>
         <Paper className={classes.paper}>
-            <Typography className={classes.status}>100</Typography>
+            <Typography className={classes.status}>{props.approvedCount}</Typography>
             <Typography>APPROVED</Typography>
           </Paper>
         </Grid>
         <Grid item className={classes.tile}>
         <Paper className={classes.paper}>
-            <Typography className={classes.status}>100</Typography>
+            <Typography className={classes.status}>{props.declinedCount}</Typography>
             <Typography>DECLINED</Typography>
-          </Paper>
+        </Paper>
         </Grid>
       </Grid>
     </div>
   )
 };
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    pendingCount: state.statusCount.pendingStatusCount,
+    approvedCount: state.statusCount.approvedStatusCount,
+    declinedCount:state.statusCount.declinedStatusCount
+  }
+};
+
+export default connect(mapStateToProps) (Dashboard);
