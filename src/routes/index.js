@@ -8,6 +8,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { rootReducer } from '../client/reducers';
 import {CheckIfLoggedIn} from "./middleware/checkIfLoggedIn";
+const statusCount = require('./middleware/statusCount');
 
 const router = express.Router();
 
@@ -40,6 +41,10 @@ router.get('/dashboard', VerifyLogin, async (req, res) => {
     secure: process.env.NODE_ENV === 'production'
   });
   res.status(200).render('pages/dashboard', {reactApp: reactComp})
+})
+
+router.get('/statusCount', statusCount, async (req, res) => {
+  res.status(200).send(res.locals);
 })
 
 export default router
