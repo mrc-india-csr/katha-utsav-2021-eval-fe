@@ -4,6 +4,7 @@ import {loginValidationSchema, studentDetailsValidationSchema} from '../utils/he
 import {ValidateLogin} from "./middleware/validateLogin";
 import {FetchStudentDetails} from "./middleware/fetchStudentDetails";
 import {ExtractJuryDetails} from "./middleware/extractJuryDetails";
+import {UpdateDownloadUrl} from "./middleware/updateDownloadUrl";
 import config from "../config";
 
 const router = express.Router()
@@ -17,7 +18,7 @@ router.get('/logout', (req, res) => {
   return res.status(200).json({redirect: '/'});
 })
 
-router.get('/student_details', validate(studentDetailsValidationSchema, {}, {}), ExtractJuryDetails, FetchStudentDetails, (req, res) => {
+router.get('/student_details', validate(studentDetailsValidationSchema, {}, {}), ExtractJuryDetails, FetchStudentDetails, UpdateDownloadUrl, (req, res) => {
   const currentPage = parseInt(req.body.page);
   const totalPages = Math.ceil(res.locals.totalStudentsCount / req.body.limit);
   const body = {
