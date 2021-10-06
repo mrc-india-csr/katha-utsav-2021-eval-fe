@@ -42,15 +42,7 @@ app.use('/public', express.static(path.join(__dirname, 'static', 'public')))
 app.use('/', index);
 app.use('/api', api);
 
-const port = process.env.PORT || 7001
-
-app.get('/api/healthy', (req, res) => {
-  res.status(200).json({ message: ' Web is healthy!'+ process.env.NODE_ENV + process.env.KATHA_API});
-});
-
-app.get('/', (req, res) => {
-  res.send('OK');
-});
+const port = process.env.PORT || 3000
 
 app.listen(port, () => {
   console.log("App is running");
