@@ -14,4 +14,5 @@ COPY --from=builder /app/dist dist
 COPY package* ./
 RUN npm i --production
 ENV NODE_ENV=production
+EXPOSE 7001
 CMD ["npm","start"]
