@@ -1,5 +1,4 @@
 FROM node:alpine as builder
-RUN apk add python make gcc g++
 WORKDIR /app
 COPY package* ./
 RUN npm ci
