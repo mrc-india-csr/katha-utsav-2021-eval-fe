@@ -1,11 +1,12 @@
 FROM node:alpine as builder
 WORKDIR /app
-COPY package* ./
-RUN npm ci
+COPY package*.json ./
+RUN npm install
 COPY .babelrc.* ./
 COPY webpack.config.js webpack.config.js
 COPY src/ src/
 RUN npm run build
+RUN npm rebuild node-sass
 
 FROM node:alpine
 WORKDIR /app
