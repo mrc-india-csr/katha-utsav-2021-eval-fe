@@ -1,4 +1,4 @@
-FROM node:alpine as builder
+FROM node:14.15.4-stretch-slim as build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
@@ -8,11 +8,13 @@ COPY src/ src/
 RUN npm run build
 RUN npm rebuild node-sass
 
-FROM node:alpine
+FROM node:14.15.4-stretch-slim
 WORKDIR /app
 COPY --from=builder /app/dist dist
 COPY package* ./
 RUN npm i --production
+RUN chown -R node /app
 ENV NODE_ENV=production
+USER node
 EXPOSE 7001
 CMD ["npm","start"]
