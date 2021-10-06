@@ -1,5 +1,5 @@
 import {pool} from '../../routes/middleware/initializers/pgdb';
-import { pendingStatusCountQuery, approvedStatusCountQuery, declinedStatusCountQuery } from '../../utils/query';
+import { pendingStatusCountQuery, evaluationStatusCountQuery } from '../../utils/query';
 
 function statusCount(req, res, next) {
   async function getPendingStatus() {
@@ -14,7 +14,7 @@ function statusCount(req, res, next) {
 
   async function getApprovedStatus() {
     try{
-      const approvedStatusQueryResponse = await pool.query(approvedStatusCountQuery,['APPROVED']);
+      const approvedStatusQueryResponse = await pool.query(evaluationStatusCountQuery,['APPROVED']);
       return approvedStatusQueryResponse.rows[0]['count'];
     }
     catch(error) {
@@ -24,7 +24,7 @@ function statusCount(req, res, next) {
 
   async function getDeclinedStatus() {
     try{
-      const declinedStatusQueryResponse = await pool.query(declinedStatusCountQuery,['DECLINED']);
+      const declinedStatusQueryResponse = await pool.query(evaluationStatusCountQuery,['DECLINED']);
       return declinedStatusQueryResponse.rows[0]['count'];
     }
     catch(error) {
