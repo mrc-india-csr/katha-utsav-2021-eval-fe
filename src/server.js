@@ -42,8 +42,8 @@ app.use('/public', express.static(path.join(__dirname, 'static', 'public')))
 app.use('/', index);
 app.use('/api', api);
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 7001
 
 app.listen(port, () => {
-  console.log("App is running");
+  console.log(`App is running on ${port}`);
 });
