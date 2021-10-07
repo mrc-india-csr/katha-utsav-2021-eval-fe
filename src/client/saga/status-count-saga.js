@@ -1,7 +1,7 @@
 import { takeEvery, takeMaybe, put, call } from "@redux-saga/core/effects";
 import { makeApiCall } from "../../utils/helpers/apiCallHelpers";
 import { setApprovedStatusCount, setDeclinedStatusCount, setPendingStatusCount } from "../actions/creators";
-import { SET_STATUS_COUNT } from "../actions/types";
+import { GET_STATUS_COUNT } from "../actions/types";
 
 export const setStatusCountInStore = function* () {
   try {
@@ -20,5 +20,5 @@ export const setStatusCountInStore = function* () {
 
 
 export default function* statusCountSaga() {
-  yield takeEvery(SET_STATUS_COUNT, setStatusCountInStore);
+  yield takeEvery(GET_STATUS_COUNT, setStatusCountInStore);
 }

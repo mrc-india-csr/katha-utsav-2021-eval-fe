@@ -1,4 +1,12 @@
 export const SET_PENDING_STATUS_COUNT = 'set_pending_status_count';
 export const SET_APPROVED_STATUS_COUNT = 'set_approved_status_count';
 export const SET_DECLINED_STATUS_COUNT = 'set_declined_status_count';
-export const SET_STATUS_COUNT = 'set_status_count';
+export const GET_STATUS_COUNT = 'set_status_count';
+export const GET_STUDENT_DETAILS = 'get_student_details';
+export const SET_STUDENT_DETAILS = 'set_student_details';
+export const UPDATE_TOTAL_COUNT = 'update_total_count';
+export const UPDATE_FICTION_COUNT = 'update_fiction_count';
+export const UPDATE_NON_FICTION_COUNT = 'update_non_fiction_count';
+export const UPDATE_POETRY_COUNT = 'update_poetry_count';
+export const UPDATE_CURRENT_DATA_SET = 'update_current_data_set';
+export const UPDATE_TOTAL_DATA_SET = 'update_total_data_set';
