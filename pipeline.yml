@@ -14,4 +14,14 @@ vault:
   name: katha-utsav-dashboard
   envs:
     - NODE_ENV
-#    - KATHA_API 
+    - PG_DATABASE_HOST
+    - PG_DATABASE_PORT
+    - PG_DATABASE_NAME
+    - PG_DATABASE_USERNAME
+    - PG_DATABASE_PASSWORD
+    - PG_DATABASE_SCHEMA
+    - S3_BUCKET_NAME
+    - S3_BUCKET_REGION
+    - S3_FOLDER
+    - JWT_SECRET_KEY
+    - JWT_VALIDITY
