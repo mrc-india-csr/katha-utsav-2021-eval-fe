@@ -12,7 +12,7 @@ RUN npm rebuild node-sass
 
 FROM node:14.15.4-stretch-slim
 WORKDIR /app
-COPY --from=builder /app/dist dist
+COPY --from=build /app/dist dist
 COPY package* ./
 RUN npm i --production
 RUN chown -R node /app
