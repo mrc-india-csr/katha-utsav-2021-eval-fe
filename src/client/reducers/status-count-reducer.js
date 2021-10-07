@@ -36,6 +36,6 @@ export default function(state = initialState, action) {
     }
 
     default:
-      return initialState;
+      return state;
   }
 }
