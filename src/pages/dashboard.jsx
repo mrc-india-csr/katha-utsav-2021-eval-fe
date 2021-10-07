@@ -3,7 +3,7 @@ import '../styles/global.scss'
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import AppBar from "@material-ui/core/AppBar";
-import ToolBar from "@material-ui/core/ToolBar";
+// import ToolBar from "@material-ui/core/ToolBar";
 import Typography  from '@material-ui/core/Typography';
 import axios from "axios";
 import logo from '../client/assets/logo.png';
@@ -55,14 +55,14 @@ const Dashboard = (props) => {
   return(
     <div className={classes.dashboard}>
       <AppBar className={classes.appBar}>
-        <ToolBar>
+        {/*<ToolBar>*/}
           <img src={logo} className={classes.logo} /> 
           <Typography className={classes.title}>Katha Utsav Evaluation Portal</Typography>          
           <Button className={classes.logout} onClick={logoutClick}>
             <img src={logoutIcon} style={{ width: '20px', margin: '5px'}} /> 
             Logout
           </Button>
-        </ToolBar>        
+        {/*</ToolBar>        */}
       </AppBar>
       <StatusTile/>
     </div>
