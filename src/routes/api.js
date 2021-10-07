@@ -11,7 +11,7 @@ import {VerifyEvaluationJury} from "./middleware/verifyEvaluationJury";
 import {UnAssignJury} from "./middleware/UnAssignJury";
 
 const router = express.Router()
-
+router.use(express.json());
 router.post('/login', validate(loginValidationSchema, {}, {}), ValidateLogin, (req, res) => {
   return res.status(200).json({redirect: '/dashboard'});
 })
@@ -21,7 +21,7 @@ router.get('/logout', (req, res) => {
   return res.status(200).json({redirect: '/'});
 })
 
-router.get('/student_details', validate(studentDetailsValidationSchema, {}, {}), ExtractJuryDetails, FetchStudentDetails, UpdateDownloadUrl, (req, res) => {
+router.post('/student_details', validate(studentDetailsValidationSchema, {}, {}), ExtractJuryDetails, FetchStudentDetails, UpdateDownloadUrl, (req, res) => {
   res.status(200).json(res.locals.responseObject);
 });
 

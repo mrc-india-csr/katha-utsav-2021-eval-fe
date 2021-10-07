@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import statusCount from './status-count-reducer';
+import studentDetails from './student-details-reducer';
 
 export const rootReducerObject = {
-    statusCount
+    statusCount,
+    studentDetails
 };
 
 export const rootReducer = combineReducers(rootReducerObject);
