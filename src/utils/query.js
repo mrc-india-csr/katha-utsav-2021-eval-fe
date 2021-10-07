@@ -17,10 +17,12 @@ export const fetchStudentDetailsQueryBuilder = (conditionObject, userData, count
 
   if(statusFilter === 'APPROVED' || statusFilter === 'REJECTED') {
     statusFilterCondition = `AND studentDetails.evaluation_status='${statusFilter}'`;
+  } else {
+    statusFilterCondition = `AND (studentDetails.evaluation_status='IN REVIEW' OR studentDetails.evaluation_id is NULL)`;
   }
 
   return `select * from (
-          select student.student_id, student.student_name, class.class_name, story.story_category_name, student.file_location_url, payment.payment_status, jury.jury_email_id, jury.jury_name ,evaluation.evaluation_status
+          select student.student_id, student.student_name, class.class_name, story.story_category_name, student.file_location_url, payment.payment_status, jury.jury_email_id, jury.jury_name ,evaluation.evaluation_status, student.evaluation_id
           from ${pgDatabaseSchema}.students student
           inner join ${pgDatabaseSchema}.classes class on student.class_id=class.class_id
           inner join ${pgDatabaseSchema}.story_categories story on student.story_category_id=story.story_category_id

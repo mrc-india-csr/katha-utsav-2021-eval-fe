@@ -29,7 +29,7 @@ router.post('/student_details/assign/:id', ExtractJuryDetails, VerifyAssign, Ass
   res.status(200).send('Action performed successfully!');
 });
 
-router.post('/student_details/unassign/:id', ExtractJuryDetails, VerifyEvaluationJury, UnAssignJury, (req, res) => {
+router.patch('/student_details/unassign/:id', ExtractJuryDetails, VerifyEvaluationJury, UnAssignJury, (req, res) => {
   res.status(200).send('Action performed successfully!');
 });
 
