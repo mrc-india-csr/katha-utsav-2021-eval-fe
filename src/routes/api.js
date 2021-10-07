@@ -7,6 +7,8 @@ import {ExtractJuryDetails} from "./middleware/extractJuryDetails";
 import {UpdateDownloadUrl} from "./middleware/updateDownloadUrl";
 import {AssignJury} from "./middleware/assignJury";
 import {VerifyAssign} from "./middleware/verifyAssign";
+import {VerifyEvaluationJury} from "./middleware/verifyEvaluationJury";
+import {UnAssignJury} from "./middleware/UnAssignJury";
 
 const router = express.Router()
 
@@ -24,6 +26,10 @@ router.get('/student_details', validate(studentDetailsValidationSchema, {}, {}),
 });
 
 router.post('/student_details/assign/:id', ExtractJuryDetails, VerifyAssign, AssignJury, (req, res) => {
+  res.status(200).send('Action performed successfully!');
+});
+
+router.post('/student_details/unassign/:id', ExtractJuryDetails, VerifyEvaluationJury, UnAssignJury, (req, res) => {
   res.status(200).send('Action performed successfully!');
 });
 

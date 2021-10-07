@@ -68,7 +68,9 @@ export const declinedStatusCountQuery = `select COUNT(*) from ${pgDatabaseSchema
 
 export const assignedCheckWithEvaluation = `select exists(select * from ${pgDatabaseSchema}.evaluations where student_id=$1)`;
 export const assignedCheckWithStudents = `select evaluation_id from ${pgDatabaseSchema}.students where student_id=$1`;
+export const unassignCheck = `select * from ${pgDatabaseSchema}.students students
+join ${pgDatabaseSchema}.evaluations evaluations on students.evaluation_id = evaluations.evaluation_id where students.student_id=$1`;
 
 export const assignNewEvaluation = `insert into ${pgDatabaseSchema}.evaluations (student_id, jury_id, evaluation_status) values ($1, $2, 'IN REVIEW') returning evaluation_id`;
-export const studentAssignEvaluationId = `update ${pgDatabaseSchema}.students set evaluation_id=$1 where student_id=$2;
-`
+export const studentSetEvaluationId = `update ${pgDatabaseSchema}.students set evaluation_id=$1 where student_id=$2`;
+export const deleteEvaluation = `delete from ${pgDatabaseSchema}.evaluations evaluations where evaluations.evaluation_id=$1`;
