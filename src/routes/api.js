@@ -5,6 +5,8 @@ import {ValidateLogin} from "./middleware/validateLogin";
 import {FetchStudentDetails} from "./middleware/fetchStudentDetails";
 import {ExtractJuryDetails} from "./middleware/extractJuryDetails";
 import {UpdateDownloadUrl} from "./middleware/updateDownloadUrl";
+import {AssignJury} from "./middleware/assignJury";
+import {VerifyAssign} from "./middleware/verifyAssign";
 
 const router = express.Router()
 
@@ -18,18 +20,11 @@ router.get('/logout', (req, res) => {
 })
 
 router.get('/student_details', validate(studentDetailsValidationSchema, {}, {}), ExtractJuryDetails, FetchStudentDetails, UpdateDownloadUrl, (req, res) => {
-  const currentPage = parseInt(req.body.page);
-  const totalPages = Math.ceil(res.locals.totalStudentsCount / req.body.limit);
-  const body = {
-    totalCount: res.locals.totalStudentsCount,
-    currentPage,
-    totalPages,
-    prevEnabled: currentPage > 1,
-    nextEnabled: currentPage < totalPages,
-    studentsList: res.locals.studentDetails
-  }
+  res.status(200).json(res.locals.responseObject);
+});
 
-  res.status(200).json(body);
+router.post('/student_details/assign/:id', ExtractJuryDetails, VerifyAssign, AssignJury, (req, res) => {
+  res.status(200).send('Action performed successfully!');
 });
 
 export default router;

@@ -3,7 +3,7 @@ import config from "../../config";
 export const UpdateDownloadUrl = (req, res, next) => {
   try {
     const { s3Folder, s3BucketRegion, s3BucketName } = config
-    res.locals.studentDetails = res.locals.studentDetails.map(data => {
+    res.locals.responseObject.studentsList = res.locals.responseObject.studentsList.map(data => {
       const filename = data.file_location_url.substring((data.file_location_url.split('/', 6).join('/').length)+1);
       return {
         ...data,
