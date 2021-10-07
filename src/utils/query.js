@@ -15,7 +15,7 @@ export const fetchStudentDetailsQueryBuilder = (conditionObject, userData, count
   const offsetValue = count ? '0' : (parseInt(dataSet)-1) * limit;
   let statusFilterCondition = '';
 
-  if(statusFilter === 'APPROVED' || statusFilter === 'REJECTED') {
+  if(statusFilter === 'APPROVED' || statusFilter === 'DECLINED') {
     statusFilterCondition = `AND studentDetails.evaluation_status='${statusFilter}'`;
   } else {
     statusFilterCondition = `AND (studentDetails.evaluation_status='IN REVIEW' OR studentDetails.evaluation_id is NULL)`;
@@ -84,4 +84,5 @@ join ${pgDatabaseSchema}.evaluations evaluations on students.evaluation_id = eva
 
 export const assignNewEvaluation = `insert into ${pgDatabaseSchema}.evaluations (student_id, jury_id, evaluation_status) values ($1, $2, 'IN REVIEW') returning evaluation_id`;
 export const studentSetEvaluationId = `update ${pgDatabaseSchema}.students set evaluation_id=$1 where student_id=$2`;
+export const evaluationSetResult = `update ${pgDatabaseSchema}.evaluations set evaluation_status=$2 where evaluation_id=$1`;
 export const deleteEvaluation = `delete from ${pgDatabaseSchema}.evaluations evaluations where evaluations.evaluation_id=$1`;
