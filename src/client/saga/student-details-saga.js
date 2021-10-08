@@ -1,17 +1,13 @@
 import { GET_STUDENT_DETAILS } from '../actions/types';
 import { setStudentDetails, updateTotalCount, updateFictionCount, updateNonFictionCount, updatePoetryCount, updateTotalDataSet, updateCurrentDataset} from '../actions/creators';
 import { makeApiCall } from "../../utils/helpers/apiCallHelpers";
-import { takeEvery, call, put } from '@redux-saga/core/effects';
-
-const params = {
-  dataSet: 1,
-  assignedOnly: false,
-  storyFilter: "All",
-  statusFilter: "PENDING",
-}
+import { takeEvery, call, put, select } from '@redux-saga/core/effects';
 
 export const updateStudentDetails = function*() {
   try {
+    const {dataSet, assignedOnly, storyFilter, statusFilter} = yield select(state => state.studentDetails);
+    let params = {dataSet, assignedOnly, storyFilter, statusFilter};
+    console.log(params);
     const { data } = yield call(makeApiCall, {
       method: 'post',
       url: '/api/student_details',
