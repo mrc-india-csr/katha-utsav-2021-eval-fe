@@ -1,4 +1,5 @@
-import { SET_PENDING_STATUS_COUNT,
+import {
+  SET_PENDING_STATUS_COUNT,
   SET_APPROVED_STATUS_COUNT,
   SET_DECLINED_STATUS_COUNT,
   GET_STATUS_COUNT,
@@ -9,8 +10,8 @@ import { SET_PENDING_STATUS_COUNT,
   UPDATE_TOTAL_DATA_SET,
   UPDATE_CURRENT_DATA_SET,
   SET_STUDENT_DETAILS,
-  GET_STUDENT_DETAILS
- } from "./types";
+  GET_STUDENT_DETAILS, SHOW_MODAL, HIDE_MODAL
+} from "./types";
 
 export const setPendingStatusCount = data => {
   return { type: SET_PENDING_STATUS_COUNT, data };
@@ -58,4 +59,12 @@ export const updateTotalDataSet = data => {
 
 export const updateCurrentDataset = data => {
   return { type: UPDATE_CURRENT_DATA_SET, data };
+}
+
+export const showModal = data => {
+  return {type: SHOW_MODAL, data};
+}
+
+export const hideModal = data => {
+  return {type: HIDE_MODAL, data};
 }

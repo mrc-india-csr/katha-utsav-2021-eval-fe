@@ -1,6 +1,72 @@
-@import './index';
+.Toastify__toast-body {
+  font-family: 'Poppins', sans-serif;
+  color: #66645E;
+}
 
-.heading{
-    font-size: 30px;
-    font-weight: bold;
+.confirmation-modal {
+  background-color: rgba(0, 0, 0, 0.25);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .modal-container {
+    background-color: #FFF;
+    border-radius: 8px;
+    padding: 28px 32px;
+
+    p {
+      font-family: 'Poppins', sans-serif;
+      color: #66645E;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 32px;
+      max-width: 550px;
+      margin: unset;
+    }
+
+    .approve-text {
+      color: #00AB88;
+    }
+
+    .decline-text {
+      color: #E10C32;
+    }
+
+    .button-section {
+      margin-top: 28px;
+      float: right;
+
+      button {
+        width: 146px;
+        height: 60px;
+        border-radius: 4px;
+        font-family: 'Fredoka One', cursive;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 24px;
+        border: none;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .confirm-button {
+        color: #FFF;
+        background-color: #98248D;
+      }
+
+      .close-button {
+        width: 100px;
+        margin-left: 5px;
+        color: #6D6C6C;
+        background-color: #FFF;
+      }
+    }
+  }
 }
