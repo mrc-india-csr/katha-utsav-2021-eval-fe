@@ -11,6 +11,6 @@ export const studentDetailsValidationSchema = {
     dataSet: Joi.number().required(),
     assignedOnly: Joi.bool().required(),
     storyFilter: Joi.string().valid('All', 'Fiction', 'Non-Fiction', 'Poetry').required(),
-    statusFilter: Joi.string().valid('PENDING', 'APPROVED', 'REJECTED').required(),
+    statusFilter: Joi.string().valid('PENDING', 'APPROVED', 'DECLINED').required(),
   }),
 }

@@ -9,6 +9,7 @@ import {AssignJury} from "./middleware/assignJury";
 import {VerifyAssign} from "./middleware/verifyAssign";
 import {VerifyEvaluationJury} from "./middleware/verifyEvaluationJury";
 import {UnAssignJury} from "./middleware/UnAssignJury";
+import {EvaluateStory} from "./middleware/evaluateStory";
 
 const router = express.Router()
 router.use(express.json());
@@ -30,6 +31,10 @@ router.post('/student_details/assign/:id', ExtractJuryDetails, VerifyAssign, Ass
 });
 
 router.patch('/student_details/unassign/:id', ExtractJuryDetails, VerifyEvaluationJury, UnAssignJury, (req, res) => {
+  res.status(200).send('Action performed successfully!');
+});
+
+router.patch('/student_details/action/:id/:action', ExtractJuryDetails, VerifyEvaluationJury, EvaluateStory, (req, res) => {
   res.status(200).send('Action performed successfully!');
 });
 
