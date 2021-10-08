@@ -1,0 +1,102 @@
+.dashboard{
+    background-color:#f6f6f6
+  }
+.appBar{
+    background-color: #ffffff;
+    color: black;
+    margin-bottom: 25px;
+    position: relative;
+}
+.title{
+    font-family: Poppins;
+    font-size: 30px;
+    line-height: 45px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    position: absolute;
+}
+
+.logout{
+  position: absolute;
+  height: 24px;
+  right: 23.06px;
+  top: 9px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: #E10C32;
+  background-color: transparent;
+  border: none;
+ }
+
+.logout:hover{    
+   background-color: #FDF6D8    
+}
+
+.logoutIcon:hover{    
+    background-color: #FDF6D8    
+ }
+
+.logoutIcon{
+    position: absolute;
+    right: 70px;
+    top: 4px;
+}
+
+ .logo{
+    width: 50px;
+    height: 50px;
+    margin-right: 25px;
+ }
+
+ @media screen and (max-width:480px){
+     
+    .logo {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        margin-left: 35px;
+    }
+
+    .title {
+        font-family: Poppins;
+        font-size: 18px;
+        line-height: 45px;
+        font-weight: 400;   
+        position: absolute;
+    }
+	
+    .logoutIcon {
+        position: relative;
+        right: 0px;
+        top: 4px;
+        width: 18px;
+    }
+
+    .logoutIcon {
+        position: relative;
+        right: 0px;
+        top: 0px;
+        width: 18px;
+    }
+
+    .logout {
+        position: relative;
+        height: 24px;
+        right: 0px;
+        top: 0px;
+        font-family: Poppins;
+        margin-left: 130px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: 0.2px;
+        color: #E10C32;
+        background-color: transparent;
+        border: none;
+    }
+}
