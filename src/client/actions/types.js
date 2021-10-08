@@ -10,3 +10,5 @@ export const UPDATE_NON_FICTION_COUNT = 'update_non_fiction_count';
 export const UPDATE_POETRY_COUNT = 'update_poetry_count';
 export const UPDATE_CURRENT_DATA_SET = 'update_current_data_set';
 export const UPDATE_TOTAL_DATA_SET = 'update_total_data_set';
+export const SHOW_MODAL = 'show_modal';
+export const HIDE_MODAL = 'hide_modal';

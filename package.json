@@ -1,7 +1,7 @@
 {
   "scripts": {
     "webpack": "webpack -d",
-    "dev": "nodemon -r dotenv/config -e css,js,jsx,ejs,cjs,ts,json,mjs script.js",
+    "dev": "nodemon -r dotenv/config -e scss,css,js,jsx,ejs,cjs,ts,json,mjs script.js",
     "webpack-production": "NODE_ENV=production webpack --mode production",
     "babel-production": "NODE_ENV=production COMPILER_ENV=server babel --out-dir dist --config-file ./.babelrc.server.json src",
     "start": "node dist/server.js",
@@ -65,6 +65,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.5",
+    "react-toastify": "^8.0.3",
     "redux": "^4.1.1",
     "redux-saga": "^1.1.3"
   }

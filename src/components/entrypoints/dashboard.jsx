@@ -7,11 +7,12 @@ import { rootReducer } from '../../client/reducers';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../../client/saga/root-saga';
 import { GET_STUDENT_DETAILS, GET_STATUS_COUNT } from '../../client/actions/types';
+import {ConfirmationDialog} from "../confirmationDialog";
 
 const composeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
     }) : compose;
-    
+
 const sagaMiddleware = createSagaMiddleware();
 const middleware = applyMiddleware(sagaMiddleware);
 const store = createStore(rootReducer,composeEnhancers(middleware));
@@ -24,6 +25,7 @@ window.onload = () => {
 hydrate(
   <Provider store={store}>
     <Dashboard />
+    <ConfirmationDialog />
   </Provider>
   , document.getElementById('root')
 );
