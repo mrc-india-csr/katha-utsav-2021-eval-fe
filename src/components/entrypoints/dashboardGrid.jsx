@@ -8,11 +8,11 @@ const DashboardGrid = (props) => {
         <div className='dashboard-grid'>
             <div className='dashboard-grid__filters'>
                 <div>Filters</div>
-                <button>All(212)</button>
-                <button>Fiction(212)</button>
-                <button>Non Fiction(212)</button>
-                <button>Poetry(212)</button>
-                <button>Filter</button>
+                <button>{`All(${props.totalCount})`}</button>
+                <button>{`Fiction(${props.fictionCount})`}</button>
+                <button>{`Non Fiction(${props.NonFictionCount})`}</button>
+                <button>{`Poetry(${props.poetryCount})`}</button>
+                <button className='dashboard-grid__filters--filter'>Show only Assigned to me</button>
             </div>
             <table>
                 <tr className='dashboard-grid__header'>
@@ -24,7 +24,6 @@ const DashboardGrid = (props) => {
                     <th className='dashboard-grid__header--assign'>Assigned To</th>
                 </tr>
                 {props.studentsList.map((obj) => {
-                    console.log(obj);
                     return (<tr className='dashboard-grid__body'>
                         <td>{obj.student_name}</td>
                         <td>{obj.class_name}</td>
@@ -34,6 +33,7 @@ const DashboardGrid = (props) => {
                         <td>{obj.jury_name || '--'}</td>
                     </tr>);
                 })}
+                {/*<div></div>*/}
             </table>
         </div>
     );
