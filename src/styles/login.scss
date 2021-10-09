@@ -3,7 +3,7 @@
     height: 98%;
     width: 99%;
     position: absolute;
-  }
+  } 
   .loginCard{
       background-color: white;
       margin:10% 30% 10% 30%;
@@ -14,26 +14,21 @@
       border-radius: 8px;
       border: 1px solid #DFE0EB;
   }
-.loginForm{
-    margin:"10% 30% 10% 30%";
-    width: "500px";
-    height: "200px";
-    position:"relative";
-    padding:"5vw";
-  }
   .loginButton{
     color: white;
     background-color: #98248D;
-    width: 30vw;
+    width: 460px;
     height: 40px;
     border: none;
     margin-left: 25px;
     border-radius: 4px;
+    cursor: pointer;
   }
-  .textfield{
-    width:30vw;
-    margin-left: 25px;
+  .loginButton:disabled{
+    background-color: #d3d3d3;
+    cursor: not-allowed;
   }
+
   .logo{
     margin-right:25px;
     width: 50px;
@@ -41,18 +36,15 @@
     display:inline;
   }
   .title{
-    font-family: Poppins;
-    font-size: 30px;
+    font-family: Poppins, sans-serif;
+    font-size: 28px;
     display: inline;
-    margin: 10px;
     position: absolute;
   }
   .subTitle{
     position: absolute;
-    width: 219px;
-    height: 32px;
-    font-family: Poppins;
-    margin-left: 20%;
+    font-family: Poppins, sans-serif;
+    margin-left: 22%;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -60,7 +52,7 @@
     text-align: center;
   }
   .emailInput{
-    width: 30vw;
+    width: 460px;
     height: 40px;
     border: 1px solid #6D6C6C;
     box-sizing: border-box;
@@ -68,17 +60,31 @@
     border-radius: 4px;
     padding: 10px;
   }
-
+  ::placeholder {
+    color: black;
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+  }
+.validationError{
+    font-family: Poppins, sans-serif;
+    font-size: 20px;
+    display: inline;
+    margin: 10px 10px 10px 60px;
+    position: absolute;
+    color: red;
+    align-items: center;
+}
   @media screen and (max-width:480px){
     .title{
-        font-family: Poppins;
-        font-size: 20px;
+        font-family: Poppins, sans-serif;
+        font-size: 17px;
         display: inline;
         margin: 1px;
         position: absolute;
       }
       .subTitle{
-        margin-left: 12%;
+        margin-left: 18%;
+        font-size: 15px;
       }
       .loginCard{
         margin: 50% 5% 2% 5%;
@@ -91,11 +97,15 @@
         display: inline;
       }
       .emailInput{
-        width: 60vw;
+        width: 220px;
         margin-left: 45px;
       }
       .loginButton{
-        width: 60vw;
+        width: 220px;
         margin-left: 45px;
+      }
+      .validationError{
+        margin: 10px 10px 10px 60px;
+        font-size: 10px;
       }
   }

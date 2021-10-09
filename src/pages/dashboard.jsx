@@ -7,7 +7,7 @@ import logoutIcon from '../client/assets/logout.png';
 import StatusTile from '../components/entrypoints/statusTile';
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
-
+ 
 const Dashboard = (props) => {
   const logoutClick = () => {
     axios.get('/api/logout').then((res) => {
@@ -26,9 +26,9 @@ const Dashboard = (props) => {
         </div>
           <button className="logout" onClick={logoutClick}>
           <img src={logoutIcon} className="logoutIcon" />
-            Logout
+            <span>Logout</span>
           </button>
-      </div>
+      </div>      
       <StatusTile/>
       <ToastContainer
         position="top-right"
