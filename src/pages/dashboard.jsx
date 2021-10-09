@@ -5,6 +5,7 @@ import axios from "axios";
 import logo from '../client/assets/logo.png';
 import logoutIcon from '../client/assets/logout.png';
 import StatusTile from '../components/entrypoints/statusTile';
+import DashboardGrid from '../components/entrypoints/dashboardGrid';
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
  
@@ -30,6 +31,7 @@ const Dashboard = (props) => {
           </button>
       </div>      
       <StatusTile/>
+      <DashboardGrid/>
       <ToastContainer
         position="top-right"
         autoClose={5000}

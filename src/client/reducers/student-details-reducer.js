@@ -18,7 +18,6 @@ const initialState = {
   totalPages: 1,
   prevEnabled: false,
   nextEnabled: false,
-  totalCount: 0,
   fictionCount: 0,
   NonFictionCount: 0,
   poetryCount: 0,
