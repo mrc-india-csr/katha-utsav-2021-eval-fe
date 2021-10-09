@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import '../styles/login.scss';
 import axios from "axios";
 import logo from '../client/assets/logo.png';
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const Auth = () => {
   const [email, setEmail] = useState('');
@@ -12,6 +14,14 @@ const Auth = () => {
     await axios.post('/api/login', {email}).then((res) => {
       window.location = res.data.redirect;
     }).catch((e) => {
+      toast.error('Email ID Does not exist!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        progress: undefined,
+        });
       console.log(e)
     });
   }
@@ -51,6 +61,16 @@ const Auth = () => {
          :null 
         }
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          pauseOnHover
+          />
     </div>
   );
 }
