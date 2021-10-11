@@ -10,7 +10,15 @@ import {
   UPDATE_TOTAL_DATA_SET,
   UPDATE_CURRENT_DATA_SET,
   SET_STUDENT_DETAILS,
-  GET_STUDENT_DETAILS, SHOW_MODAL, HIDE_MODAL
+  GET_STUDENT_DETAILS, 
+  SHOW_MODAL, 
+  HIDE_MODAL,
+  ACCEPT_OR_DECLINE_STORY,
+  ASSIGN_STORY,
+  UN_ASSIGN_STORY,
+  UPDATE_STORY_ASSIGNED,
+  UPDATE_STORY_UN_ASSIGNED,
+  UPDATE_ACCEPT_OR_DECLINED
 } from "./types";
 
 export const setPendingStatusCount = data => {
@@ -67,4 +75,28 @@ export const showModal = data => {
 
 export const hideModal = data => {
   return {type: HIDE_MODAL, data};
+}
+
+export const acceptOrDeclineStory = data => {
+  return {type: ACCEPT_OR_DECLINE_STORY, data};
+}
+
+export const assignStory = data => {
+  return {type: ASSIGN_STORY, data};
+}
+
+export const unAssignStory = data => {
+  return {type: UN_ASSIGN_STORY, data};
+}
+
+export const updateStoryAssigned = data => {
+  return {type: UPDATE_STORY_ASSIGNED, data};
+}
+
+export const updateStoryUnAssigned = data => {
+  return {type: UPDATE_STORY_UN_ASSIGNED, data};
+}
+
+export const updateAcceptOrDeclined = data => {
+  return {type: UPDATE_ACCEPT_OR_DECLINED, data};
 }

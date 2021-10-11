@@ -9,9 +9,9 @@ export const setStatusCountInStore = function* () {
       method: 'get',
       url: '/statusCount',
     });
-    yield put(setPendingStatusCount(data.pendingStatus));
-    yield put(setApprovedStatusCount(data.approvedStatus));
-    yield put(setDeclinedStatusCount(data.declinedStatus));
+    yield put(setPendingStatusCount(parseInt(data.pendingStatus)));
+    yield put(setApprovedStatusCount(parseInt(data.approvedStatus)));
+    yield put(setDeclinedStatusCount(parseInt(data.declinedStatus)));
   }
   catch (error) {
     console.log(error);

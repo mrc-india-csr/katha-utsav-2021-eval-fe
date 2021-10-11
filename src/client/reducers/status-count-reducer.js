@@ -4,9 +4,9 @@ import {
   SET_DECLINED_STATUS_COUNT } from "../actions/types";
 
 const initialState = {
-  pendingStatusCount: '',
-  approvedStatusCount: '',
-  declinedStatusCount: '',
+  pendingStatusCount: 0,
+  approvedStatusCount: 0,
+  declinedStatusCount: 0,
 }
 
 export default function(state = initialState, action) {

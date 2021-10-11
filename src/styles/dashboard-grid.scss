@@ -99,6 +99,46 @@
       @media screen and (max-width: 700px) {
         padding-left: .5rem;
       }
+
+      .assign-to-me-cta {
+        border: 1px solid #98248D;
+        background: #fff;
+        color: #98248D;
+        width: 100px;
+        height: 2rem;
+        border-radius: 3px;
+        margin: 0 1rem;
+        cursor: pointer;
+      }
+
+      .cta-wrapper {
+        display: flex;
+
+        button {
+          margin: 0 0.5rem;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+
+        .approve-cta {
+          color: #fff;
+          background-color: #00AB88;
+          border: 1px solid #00AB88;
+        }
+
+        .decline-cta {
+          color: #fff;
+          background-color: #ADAFB2;
+          border: 1px solid #ADAFB2;
+        }
+
+        .unassign-cta {
+          color: #000000;
+          border: 1px solid #000000;
+          width: 76px;
+          height: 30px;
+        }
+      }
     }
   }
 }
