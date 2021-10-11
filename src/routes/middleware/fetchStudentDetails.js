@@ -16,7 +16,7 @@ export const FetchStudentDetails = async (req, res, next) => {
     const nonFictionCount = (await pool.query(countNonFictionStudentDetailsQueryBuilder(req.body, res.locals.userData))).rows[0].count;
     const poetryCount = (await pool.query(countPoetryStudentDetailsQueryBuilder(req.body, res.locals.userData))).rows[0].count;
     const currentDataSet = req.body.dataSet;
-    const totalDataSet = Math.ceil(totalCount / 100);
+    const totalDataSet = Math.ceil(totalCount / 110);
 
     res.locals.responseObject = {
       totalCount,

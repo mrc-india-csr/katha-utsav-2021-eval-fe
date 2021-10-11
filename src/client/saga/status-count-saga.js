@@ -1,17 +1,18 @@
-import { takeEvery, takeMaybe, put, call } from "@redux-saga/core/effects";
+import { takeEvery, put, call } from "@redux-saga/core/effects";
 import { makeApiCall } from "../../utils/helpers/apiCallHelpers";
-import { setApprovedStatusCount, setDeclinedStatusCount, setPendingStatusCount } from "../actions/creators";
+import { setApprovedStatusCount, setDeclinedStatusCount, setPendingStatusCount, updateJuryEmailId } from "../actions/creators";
 import { GET_STATUS_COUNT } from "../actions/types";
 
 export const setStatusCountInStore = function* () {
   try {
     const { data } = yield call(makeApiCall, {
       method: 'get',
-      url: '/statusCount',
+      url: '/api/statusCount',
     });
-    yield put(setPendingStatusCount(data.pendingStatus));
-    yield put(setApprovedStatusCount(data.approvedStatus));
-    yield put(setDeclinedStatusCount(data.declinedStatus));
+    yield put(setPendingStatusCount(parseInt(data.pendingStatus)));
+    yield put(setApprovedStatusCount(parseInt(data.approvedStatus)));
+    yield put(setDeclinedStatusCount(parseInt(data.declinedStatus)));
+    yield put(updateJuryEmailId(data.userData.email));
   }
   catch (error) {
     console.log(error);

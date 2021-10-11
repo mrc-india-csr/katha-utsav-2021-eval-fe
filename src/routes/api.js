@@ -10,17 +10,22 @@ import {VerifyAssign} from "./middleware/verifyAssign";
 import {VerifyEvaluationJury} from "./middleware/verifyEvaluationJury";
 import {UnAssignJury} from "./middleware/UnAssignJury";
 import {EvaluateStory} from "./middleware/evaluateStory";
+const statusCount = require('./middleware/statusCount');
 
 const router = express.Router()
 router.use(express.json());
 router.post('/login', validate(loginValidationSchema, {}, {}), ValidateLogin, (req, res) => {
   return res.status(200).json({redirect: '/dashboard'});
-})
+});
 
 router.get('/logout', (req, res) => {
   res.clearCookie('jwt');
   return res.status(200).json({redirect: '/'});
-})
+});
+
+router.get('/statusCount', ExtractJuryDetails, statusCount, async (req, res) => {
+  res.status(200).send(res.locals);
+});
 
 router.post('/student_details', validate(studentDetailsValidationSchema, {}, {}), ExtractJuryDetails, FetchStudentDetails, UpdateDownloadUrl, (req, res) => {
   res.status(200).json(res.locals.responseObject);
