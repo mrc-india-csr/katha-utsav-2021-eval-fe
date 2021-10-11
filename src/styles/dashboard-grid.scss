@@ -1,7 +1,11 @@
 .dashboard-grid {
   margin: 1.25rem 4.75rem;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1200px) {
+    margin: 1.25rem;
+  }
+
+  @media screen and (max-width: 850px) {
     margin: 1.25rem 0;
   }
 
@@ -28,6 +32,10 @@
       padding: 0 .5rem;
     }
 
+    @media screen and (max-width: 1000px) {
+      height: 8rem;
+    }
+
     button {
       border: 1px solid rgba(0, 0, 0, 0.5);
       box-sizing: border-box;
@@ -46,7 +54,17 @@
       position: absolute;
       right: 1.5rem;
       border: none !important;
-      width: 11rem !important;
+      width: 14rem !important;
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-left: .2rem;
+      }
+
+      @media screen and (max-width: 1000px) {
+        bottom: 1rem;
+      }
     }
   }
 
@@ -66,13 +84,13 @@
     th {
       padding-left: 2rem;
 
-      @media screen and (max-width: 700px) {
-        padding-left: .5rem;
+      @media screen and (max-width: 1200px) {
+        padding-left: 1rem;
       }
-    }
 
-    &--assign {
-      width: 25rem;
+      @media screen and (max-width: 850px) {
+        padding-left: 0;
+      }
     }
   }
 
@@ -96,8 +114,12 @@
     td {
       padding-left: 2rem;
 
-      @media screen and (max-width: 700px) {
-        padding-left: .5rem;
+      @media screen and (max-width: 1200px) {
+        padding-left: 1rem;
+      }
+
+      @media screen and (max-width: 850px) {
+        padding-left: 0;
       }
 
       .assign-to-me-cta {
@@ -139,6 +161,10 @@
           height: 30px;
         }
       }
+    }
+
+    img {
+      margin-right: .5rem;
     }
   }
 }
