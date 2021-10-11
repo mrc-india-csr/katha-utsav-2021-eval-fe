@@ -10,12 +10,13 @@ const Auth = () => {
   const [isValidEmail, setIsValidEmail] = useState(false);
 
   const loginSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); 
     await axios.post('/api/login', {email}).then((res) => {
       window.location = res.data.redirect;
     }).catch((e) => {
       toast.error('Email ID Does not exist!', {
-        position: "top-center",
+        toastId:"errorMsg",
+        position: "bottom-center",
         autoClose: 5000,
         hideProgressBar: true,
         closeOnClick: true,
@@ -62,7 +63,7 @@ const Auth = () => {
         }
         </div>
         <ToastContainer
-          position="top-center"
+          position="bottom-center"
           autoClose={5000}
           hideProgressBar={true}
           newestOnTop={false}
