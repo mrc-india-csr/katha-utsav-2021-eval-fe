@@ -11,13 +11,10 @@ import {
     updateCurrentDataset
 } from '../../client/actions/creators';
 import '../../styles/dashboard-grid.scss';
-<<<<<<< HEAD
 import download from '../../client/assets/download.png';
 import toggleOn from '../../client/assets/toggle-on.png';
 import toggleOff from '../../client/assets/toggle-off.png';
-=======
-import {getFictionStories,getNonFictionStories,getPoetryStories, getStudentDetails} from '../../client/actions/creators'
->>>>>>> d554a96 (Filter Feature)
+import {getStudentDetails} from '../../client/actions/creators'
 
 const DashboardGrid = (props) => {
     // console.log(props);
