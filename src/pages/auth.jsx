@@ -2,33 +2,27 @@ import React, {useState} from 'react';
 import '../styles/login.scss';
 import axios from "axios";
 import logo from '../client/assets/logo.png';
-import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 
 const Auth = () => {
   const [email, setEmail] = useState('');
   const [isValidEmail, setIsValidEmail] = useState(false);
-
+  const [authError, setAuthError] = useState(false);
   const loginSubmit = async (event) => {
     event.preventDefault(); 
     await axios.post('/api/login', {email}).then((res) => {
       window.location = res.data.redirect;
     }).catch((e) => {
-      toast.error('Email ID Does not exist!', {
-        toastId:"errorMsg",
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        progress: undefined,
-        });
+      setAuthError(true);
       console.log(e)
     });
   }
   const handleValidation = (emailID) =>{
     let emailValid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(emailID);
-    emailValid ? setIsValidEmail(true) : setIsValidEmail(false);    
+    emailValid ? setIsValidEmail(true) : setIsValidEmail(false);
+    if(authError){
+      setAuthError(false);
+    }    
     setEmail(emailID);
   }
 
@@ -39,7 +33,7 @@ const Auth = () => {
           <span className="title"> Katha Utsav Evaluation Portal </span>
           <br/>
         <span className="subTitle">Enter your mail ID to login</span>  
-        <br/><br/><br/>       
+        <br/><br/><br/>     
 		    <form onSubmit={loginSubmit}>
           <div>
               <input
@@ -61,17 +55,12 @@ const Auth = () => {
          <span className="validationError">Please login with your registered Mail ID</span>
          :null 
         }
+        {
+        (authError)?
+         <span className="authError">The Email ID does not exist!</span>
+         :null 
+        }
         </div>
-        <ToastContainer
-          position="bottom-center"
-          autoClose={5000}
-          hideProgressBar={true}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          pauseOnHover
-          />
     </div>
   );
 }
