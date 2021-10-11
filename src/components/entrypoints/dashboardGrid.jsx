@@ -60,7 +60,7 @@ const DashboardGrid = (props) => {
                         <td><a href={obj.file_location_url}>Download File</a></td>
                         <td>{obj.evaluation_status || 'Pending'}</td>
                         <td>{obj.jury_name || '--'}</td>
-                        {(obj.jury_email_id === null || obj.jury_email_id === 'demo@gmail.com') && <td> {obj.evaluation_status === 'IN REVIEW' 
+                        {(obj.jury_email_id === null || obj.jury_email_id === props.juryEmailId) && <td> {obj.evaluation_status === 'IN REVIEW' 
                         ? <div className='cta-wrapper'>
                             <button className='approve-cta' onClick={() => storyActionHandler(obj.student_id, obj.story_category_name, 1, index)}>Approve</button>
                             <button className='decline-cta' onClick={() => storyActionHandler(obj.student_id, obj.story_category_name, 2, index)}>Decline</button>
@@ -93,6 +93,7 @@ const mapStateToProps = (state) => {
         currentDataSet: state.studentDetails.currentDataSet,
         totalDataSet: state.studentDetails.totalDataSet,
         studentsList: state.studentDetails.studentsList,
+        juryEmailId: state.statusCount.juryEmailId
     }
 };
 

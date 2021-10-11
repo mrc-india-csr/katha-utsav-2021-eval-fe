@@ -18,7 +18,8 @@ import {
   UN_ASSIGN_STORY,
   UPDATE_STORY_ASSIGNED,
   UPDATE_STORY_UN_ASSIGNED,
-  UPDATE_ACCEPT_OR_DECLINED
+  UPDATE_ACCEPT_OR_DECLINED,
+  UPDATE_JURY_EMAIL_ID
 } from "./types";
 
 export const setPendingStatusCount = data => {
@@ -99,4 +100,8 @@ export const updateStoryUnAssigned = data => {
 
 export const updateAcceptOrDeclined = data => {
   return {type: UPDATE_ACCEPT_OR_DECLINED, data};
+}
+
+export const updateJuryEmailId = data => {
+  return {type: UPDATE_JURY_EMAIL_ID, data};
 }
