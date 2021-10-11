@@ -4,7 +4,10 @@ import { SET_STUDENT_DETAILS,
   UPDATE_NON_FICTION_COUNT, 
   UPDATE_POETRY_COUNT,
   UPDATE_CURRENT_DATA_SET,
-  UPDATE_TOTAL_DATA_SET
+  UPDATE_TOTAL_DATA_SET,
+  UPDATE_STORY_ASSIGNED,
+  UPDATE_ACCEPT_OR_DECLINED,
+  UPDATE_STORY_UN_ASSIGNED
  } from "../actions/types";
 
 const initialState = {
@@ -82,6 +85,53 @@ export default function(state= initialState, action) {
         currentDataSet: action.data
       }
       
+      return newState;
+    }
+
+    case UPDATE_STORY_ASSIGNED: {
+      const newStudentsList = state.studentsList;
+      const { studentIndex } = action.data;
+      const { jury_email_id, jury_name, evaluation_status, evaluation_id } = action.data.juryDetails;
+
+     newStudentsList[studentIndex] = {
+        ...newStudentsList[studentIndex],
+        jury_email_id,
+        jury_name,
+        evaluation_status,
+        evaluation_id
+     };
+     
+      const newState = {
+        ...state,
+        studentsList: [...newStudentsList]
+      }
+      return newState;
+    }
+
+    case UPDATE_STORY_UN_ASSIGNED: {
+      const newStudentsList = state.studentsList;
+      const studentIndex = action.data;
+     newStudentsList[studentIndex] = {
+        ...newStudentsList[studentIndex],
+        jury_email_id: null,
+        jury_name: null,
+        evaluation_status: null,
+        evaluation_id: null
+     };
+     
+      const newState = {
+        ...state,
+        studentsList: [...newStudentsList]
+      }
+      return newState;
+    }
+
+    case UPDATE_ACCEPT_OR_DECLINED: {
+      const newStudentsList = state.studentsList.filter((element, index) => index !== action.data);
+      const newState = {
+        ...state,
+        studentsList: [...newStudentsList]
+      }
       return newState;
     }
 
