@@ -7,7 +7,7 @@ export const loginQuery = `select * from ${pgDatabaseSchema}.juries where jury_e
 export const fetchStudentDetailsQueryBuilder = (conditionObject, userData, count=false) => {
   const {dataSet, assignedOnly, storyFilter, statusFilter} = conditionObject;
   const {email} = userData;
-  const limit = 110;
+  const limit = 100;
 
   const showUnAssigned = assignedOnly ? `AND studentDetails.jury_email_id='${email}'` : '';
   const storyFilterCondition = storyFilter === 'All' ? '' : `AND studentDetails.story_category_name='${storyFilter}'`;
