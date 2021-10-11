@@ -40,8 +40,8 @@ export const getStatusCount = () => {
   return { type: GET_STATUS_COUNT };
 }
 
-export const getStudentDetails = () => {
-  return { type: GET_STUDENT_DETAILS };
+export const getStudentDetails = storyType => {
+  return { type: GET_STUDENT_DETAILS, storyType };
 }
 
 export const setStudentDetails = data => {

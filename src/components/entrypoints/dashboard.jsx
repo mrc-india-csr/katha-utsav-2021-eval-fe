@@ -19,7 +19,7 @@ const store = createStore(rootReducer,composeEnhancers(middleware));
 sagaMiddleware.run(rootSaga);
 window.onload = () => {
   store.dispatch({type: GET_STATUS_COUNT});
-  store.dispatch({type: GET_STUDENT_DETAILS});
+  store.dispatch({type: GET_STUDENT_DETAILS,storyType:"All"});
 }
 
 hydrate(

@@ -3,9 +3,15 @@ import { setStudentDetails, updateTotalCount, updateFictionCount, updateNonFicti
 import { makeApiCall } from "../../utils/helpers/apiCallHelpers";
 import { takeEvery, call, put, select } from '@redux-saga/core/effects';
 
-export const updateStudentDetails = function*() {
+export const updateStudentDetails = function*(action) {
   try {
-    const {dataSet, assignedOnly, storyFilter, statusFilter} = yield select(state => state.studentDetails);
+    const {dataSet, assignedOnly, statusFilter} = yield select(state => state.studentDetails);
+    let storyFilter;
+    if(action.storyType) {
+      storyFilter = action.storyType;
+    } else {
+      storyFilter = "All";
+    }
     let params = {dataSet, assignedOnly, storyFilter, statusFilter};
     console.log(params);
     const { data } = yield call(makeApiCall, {
