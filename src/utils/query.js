@@ -33,7 +33,11 @@ export const fetchStudentDetailsQueryBuilder = (conditionObject, userData, count
 }
 
 export const countStudentDetailsQueryBuilder = (conditionObject, userData) => {
-  const builtQuery = fetchStudentDetailsQueryBuilder(conditionObject, userData, true);
+  const updatedConditionObject = {
+    ...conditionObject,
+    storyFilter: 'All'
+  }
+  const builtQuery = fetchStudentDetailsQueryBuilder(updatedConditionObject, userData, true);
   return `select count (*) from(${builtQuery}) as formattedStudentDetails`;
 }
 
