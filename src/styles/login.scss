@@ -74,6 +74,11 @@
     color: red;
     align-items: center;
 }
+
+.Toastify__toast-container--bottom-center {
+    bottom: 110px !important;
+}
+
   @media screen and (max-width:480px){
     .title{
         font-family: Poppins, sans-serif;
@@ -107,5 +112,8 @@
       .validationError{
         margin: 10px 10px 10px 60px;
         font-size: 10px;
+      }
+      .Toastify__toast-container--bottom-center {
+        bottom: 310px !important;
       }
   }
