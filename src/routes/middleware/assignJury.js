@@ -7,6 +7,7 @@ export const AssignJury = async (req, res, next) => {
     const studentEvaluation = await pool.query(studentSetEvaluationId, [newEvaluationId, req.params.id]);
 
     if(studentEvaluation.rowCount === 1) {
+      res.locals.newevaluationId = newEvaluationId;
       next();
     } else {
       res.status(500).send('Something went wrong');

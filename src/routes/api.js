@@ -27,11 +27,19 @@ router.post('/student_details', validate(studentDetailsValidationSchema, {}, {})
 });
 
 router.post('/student_details/assign/:id', ExtractJuryDetails, VerifyAssign, AssignJury, (req, res) => {
-  res.status(200).send('Action performed successfully!');
+  res.status(200).json({
+    jury_email_id: res.locals.userData.email,
+    jury_name: res.locals.userData.name,
+    evaluation_status: 'IN REVIEW',
+    evaluation_id: res.locals.newevaluationId
+  });
 });
 
 router.patch('/student_details/unassign/:id', ExtractJuryDetails, VerifyEvaluationJury, UnAssignJury, (req, res) => {
-  res.status(200).send('Action performed successfully!');
+  res.status(200).json({
+    jury_email_id: res.locals.userData.email,
+    jury_name: res.locals.userData.name,
+  });
 });
 
 router.patch('/student_details/action/:id/:action', ExtractJuryDetails, VerifyEvaluationJury, EvaluateStory, (req, res) => {
