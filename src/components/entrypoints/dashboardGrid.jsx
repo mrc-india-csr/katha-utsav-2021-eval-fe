@@ -1,11 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
-import { acceptOrDeclineStory, assignStory, unAssignStory } from '../../client/actions/creators';
+import {
+    acceptOrDeclineStory,
+    assignStory,
+    unAssignStory,
+    getStudentDetails,
+    filterMine
+} from '../../client/actions/creators';
 import '../../styles/dashboard-grid.scss';
+import download from '../../client/assets/download.png';
+import toggleOn from '../../client/assets/toggle-on.png';
+import toggleOff from '../../client/assets/toggle-off.png';
 
 const DashboardGrid = (props) => {
     // console.log(props);
+    const [toggle, setToggle] = useState(false);
     const dispatch = useDispatch();
     const storyActionHandler = (student_id, storyCategory, action, studentIndex) => {
         const category = storyCategory.replace(/[^a-zA-Z]/g,"");
@@ -33,15 +43,22 @@ const DashboardGrid = (props) => {
         }));
     };
 
+    const toggleFilterMine = (toggle) => {
+        console.log('filter my stories');
+        dispatch(filterMine(!toggle));
+        dispatch(getStudentDetails());
+        setToggle(!toggle);
+    };
+
     return (
         <div className='dashboard-grid'>
             <div className='dashboard-grid__filters'>
                 <div>Filters</div>
-                <button>{`All(${props.totalCount})`}</button>
-                <button>{`Fiction(${props.fictionCount})`}</button>
-                <button>{`Non Fiction(${props.NonFictionCount})`}</button>
-                <button>{`Poetry(${props.poetryCount})`}</button>
-                <button className='dashboard-grid__filters--filter'>Show only Assigned to me</button>
+                <button>{`All(${props.totalCount || 0})`}</button>
+                <button>{`Fiction(${props.fictionCount || 0})`}</button>
+                <button>{`Non Fiction(${props.NonFictionCount || 0})`}</button>
+                <button>{`Poetry(${props.poetryCount || 0})`}</button>
+                <button onClick={() => toggleFilterMine(toggle)} className='dashboard-grid__filters--filter'>Show only Assigned to me <img src={toggle ? toggleOn: toggleOff} alt="toggle" /></button>
             </div>
             <table>
                 <tr className='dashboard-grid__header'>
@@ -57,7 +74,7 @@ const DashboardGrid = (props) => {
                         <td>{obj.student_name}</td>
                         <td>{obj.class_name}</td>
                         <td>{obj.story_category_name}</td>
-                        <td><a href={obj.file_location_url}>Download File</a></td>
+                        <td><img src={download} alt="" /><a href={obj.file_location_url}>Download File</a></td>
                         <td>{obj.evaluation_status || 'Pending'}</td>
                         <td>{obj.jury_name || '--'}</td>
                         {(obj.jury_email_id === null || obj.jury_email_id === props.juryEmailId) && <td> {obj.evaluation_status === 'IN REVIEW' 
