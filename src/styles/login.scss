@@ -75,8 +75,14 @@
     align-items: center;
 }
 
-.Toastify__toast-container--bottom-center {
-    bottom: 110px !important;
+.authError{
+  font-family: Poppins, sans-serif;
+  font-size: 20px;
+  display: inline;
+  margin: 10px 10px 10px 120px;
+  position: absolute;
+  color: red;
+  align-items: center;  
 }
 
   @media screen and (max-width:480px){
@@ -113,7 +119,8 @@
         margin: 10px 10px 10px 60px;
         font-size: 10px;
       }
-      .Toastify__toast-container--bottom-center {
-        bottom: 310px !important;
+      .authError {
+        font-size: 16px;
+        margin: 10px 10px 10px 50px;
       }
   }
