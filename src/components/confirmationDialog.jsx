@@ -3,17 +3,18 @@ import ReactDOM from "react-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {Loader} from "./loader";
 import { toast } from 'react-toastify';
+import { acceptOrDeclineStory } from '../client/actions/creators';
 
 export const ConfirmationDialog = () => {
   const [loading, setLoading] = useState(false);
-  const {showModal, displayName, evaluationAction, evaluationId} = useSelector(state => state.displayModalReducer);
+  const {showModal, displayName, evaluationParams} = useSelector(state => state.displayModalReducer);
   const dispatch = useDispatch();
-  const approveText = evaluationAction === '1' ? 'Approve' : '';
-  const declineText = evaluationAction === '2' ? 'Decline' : '';
+  const approveText = evaluationParams.storyAction === 1 ? 'Approve' : '';
+  const declineText = evaluationParams.storyAction === 2 ? 'Decline' : '';
 
   const confirmAction = () => {
     if (loading) return;
-    console.log(`/api/student_details/action/:${evaluationId}/:${evaluationAction}`);
+    dispatch(acceptOrDeclineStory(evaluationParams));
     setLoading(true);
     setTimeout(() => {
       dispatch({type: 'hide_modal'});

@@ -6,7 +6,8 @@ import {
     assignStory,
     unAssignStory,
     getStudentDetails,
-    filterMine
+    filterMine,
+    showModal
 } from '../../client/actions/creators';
 import '../../styles/dashboard-grid.scss';
 import download from '../../client/assets/download.png';
@@ -17,14 +18,19 @@ const DashboardGrid = (props) => {
     // console.log(props);
     const [toggle, setToggle] = useState(false);
     const dispatch = useDispatch();
-    const storyActionHandler = (student_id, storyCategory, action, studentIndex) => {
-        const category = storyCategory.replace(/[^a-zA-Z]/g,"");
-        dispatch(acceptOrDeclineStory({
+    const storyActionHandler = (student_id, storyCategory, action, studentIndex, displayName) => {
+        const category = storyCategory.replace(/[^a-zA-Z]/g,""); 
+        const evaluationParams = {
             id: student_id,
             storyAction: action,
             storyCategory: category,
             studentIndex
-        }));
+        }
+        const data = {
+            evaluationParams,
+            displayName
+        }
+        dispatch(showModal(data));
     };
 
     const assignStoryHandler = (student_id, studentIndex) => {
@@ -79,8 +85,8 @@ const DashboardGrid = (props) => {
                         <td>{obj.jury_name || '--'}</td>
                         {(obj.jury_email_id === null || obj.jury_email_id === props.juryEmailId) && <td> {obj.evaluation_status === 'IN REVIEW' 
                         ? <div className='cta-wrapper'>
-                            <button className='approve-cta' onClick={() => storyActionHandler(obj.student_id, obj.story_category_name, 1, index)}>Approve</button>
-                            <button className='decline-cta' onClick={() => storyActionHandler(obj.student_id, obj.story_category_name, 2, index)}>Decline</button>
+                            <button className='approve-cta' onClick={() => storyActionHandler(obj.student_id, obj.story_category_name, 1, index, obj.student_name)}>Approve</button>
+                            <button className='decline-cta' onClick={() => storyActionHandler(obj.student_id, obj.story_category_name, 2, index, obj.student_name)}>Decline</button>
                             <button className='unassign-cta' onClick={() => unAssignStoryHandler(obj.student_id, index)}>Un-Assign</button></div> 
                         : <button className='assign-to-me-cta' onClick={() => assignStoryHandler(obj.student_id, index)}>Assign to me</button>}</td>}
                     </tr>);

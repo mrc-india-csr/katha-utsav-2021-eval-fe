@@ -4,7 +4,7 @@ const initialState = {
   showModal: false,
   displayName: '',
   evaluationAction: '',
-  evaluationId: ''
+  evaluationParams: {}
 }
 
 export default function(state = initialState, action) {
@@ -13,15 +13,13 @@ export default function(state = initialState, action) {
       return {
         showModal: true,
         displayName: action.data.displayName,
-        evaluationAction: action.data.evaluationAction,
-        evaluationId: action.data.evaluationId,
+        evaluationParams: action.data.evaluationParams,
       }
     case HIDE_MODAL:
       return {
         showModal: false,
         displayName: '',
-        evaluationAction: '',
-        evaluationId: ''
+        evaluationParams: '',
       }
     default:
       return initialState;
