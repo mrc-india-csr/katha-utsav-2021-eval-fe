@@ -141,7 +141,7 @@ const DashboardGrid = (props) => {
                             <td>{obj.class_name}</td>
                             <td>{obj.story_category_name}</td>
                             <td><img src={download} alt="" /><a href={obj.file_location_url}>Download File</a></td>
-                            <td className={`dashboard-grid__body--status ${obj.evaluation_status === 'DECLINED' && 'red'} ${obj.evaluation_status === 'APPROVED' && 'green'}`}><p>{obj.evaluation_status || 'PENDING'}</p></td>
+                            <td className={`dashboard-grid__body--status ${obj.evaluation_status === 'IN REVIEW' && 'yellow'} ${obj.evaluation_status === 'DECLINED' && 'red'} ${obj.evaluation_status === 'APPROVED' && 'green'}`}><p>{obj.evaluation_status || 'PENDING'}</p></td>
                             {props.statusFilter === 'PENDING' && <td>{obj.jury_name || '--'}</td>}
                             {props.statusFilter === 'PENDING' && (obj.jury_email_id === null || obj.jury_email_id === props.juryEmailId) && <td> {obj.evaluation_status === 'IN REVIEW'
                                 ? <div className='cta-wrapper'>
