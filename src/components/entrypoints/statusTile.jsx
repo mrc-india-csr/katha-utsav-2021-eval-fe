@@ -15,6 +15,7 @@ const StatusTile = (props) => {
             dispatch(statusFilter('APPROVED'));
             dispatch(getStudentDetails());
             setTileState(2);
+            props.clickAction(props.approvedCount);
         }
     };
 
@@ -23,15 +24,16 @@ const StatusTile = (props) => {
             dispatch(statusFilter('DECLINED'));
             dispatch(getStudentDetails());
             setTileState(3);
+            props.clickAction(props.declinedCount);
         }
     };
 
     const showPending = () => {
         if(tileState!=1) {
-            console.log('enters');
             dispatch(statusFilter('PENDING'));
             dispatch(getStudentDetails());
             setTileState(1);
+            props.clickAction(props.pendingCount);
         }
     };
 
@@ -62,7 +64,7 @@ const mapStateToProps = (state) => {
   return {
     pendingCount: state.statusCount.pendingStatusCount,
     approvedCount: state.statusCount.approvedStatusCount,
-    declinedCount:state.statusCount.declinedStatusCount
+    declinedCount:state.statusCount.declinedStatusCount,
   }
 };
 
