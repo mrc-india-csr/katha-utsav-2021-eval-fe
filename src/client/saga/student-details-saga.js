@@ -14,7 +14,7 @@ export const updateStudentDetails = function*() {
       data: params
     });
     yield put(setStudentDetails(data.studentsList));
-    yield put(updateTotalCount(data.totalCount));
+    yield put(updateTotalCount(parseInt(data.fictionCount)+parseInt(data.nonFictionCount)+parseInt(data.poetryCount)));
     yield put(updateFictionCount(data.fictionCount));
     yield put(updateNonFictionCount(data.nonFictionCount));
     yield put(updatePoetryCount(data.poetryCount));
