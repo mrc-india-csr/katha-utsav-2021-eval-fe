@@ -8,7 +8,8 @@ import { SET_STUDENT_DETAILS,
   UPDATE_STORY_ASSIGNED,
   UPDATE_ACCEPT_OR_DECLINED,
   UPDATE_STORY_UN_ASSIGNED,
-  FILTER_MINE
+  FILTER_MINE,
+  STATUS_FILTER
  } from "../actions/types";
 
 const initialState = {
@@ -44,6 +45,14 @@ export default function(state= initialState, action) {
       const newState = {
         ...state,
         assignedOnly: action.data
+      }
+      return newState;
+    }
+
+    case STATUS_FILTER : {
+      const newState = {
+        ...state,
+        statusFilter: action.data
       }
       return newState;
     }
