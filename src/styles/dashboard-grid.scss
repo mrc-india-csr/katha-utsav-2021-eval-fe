@@ -69,6 +69,7 @@
       display: flex;
       align-items: center;
       cursor: pointer;
+      background-color: transparent;
 
       img {
         margin-left: .2rem;
@@ -175,6 +176,37 @@
       }
     }
 
+    &--status {
+      text-align: center;
+      p {
+        border-radius: 100px;
+        border: 1px solid #BDBDBD;
+        text-align: center;
+        font-size: 0.688rem;
+        background-color: rgba(0, 0, 0, 0.1);
+        margin: auto;
+        height: 1rem;
+        padding-top: .3rem;
+        width: 6rem;
+      }
+    }
+
+    .red {
+      p {
+        border-color: #E10C32;
+        color: #E10C32;
+        background-color: #FCE7EB;
+      }
+    }
+
+    .green {
+      p {
+        border-color: #00AB88;
+        color: #00AB88;
+        background-color: #E6F7F3;
+      }
+    }
+
     img {
       margin-right: .5rem;
     }
@@ -200,6 +232,15 @@
       border: none;
       background-color: transparent;
       color: #9FA2B4;
+      cursor: pointer;
+    }
+
+    &--count {
+      margin-left: .5rem;
+
+      .box {
+        border: solid 1px black;
+      }
     }
   }
 }
