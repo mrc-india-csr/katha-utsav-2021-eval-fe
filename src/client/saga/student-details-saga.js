@@ -7,7 +7,6 @@ export const updateStudentDetails = function*() {
   try {
     const {dataSet, assignedOnly, storyFilter, statusFilter} = yield select(state => state.studentDetails);
     let params = {dataSet, assignedOnly, storyFilter, statusFilter};
-    console.log(params);
     const { data } = yield call(makeApiCall, {
       method: 'post',
       url: '/api/student_details',
