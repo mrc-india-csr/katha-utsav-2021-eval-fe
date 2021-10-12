@@ -1,28 +1,58 @@
-import React from "react"
+import React, {useState} from "react"
 import { connect } from 'react-redux';
 import '../../styles/statusTile.scss';
+import { useDispatch } from 'react-redux';
+import {getStudentDetails, statusFilter} from '../../client/actions/creators';
 
-const StatusTile = (props) =>{
+const StatusTile = (props) => {
 
-  const totalCount = parseInt(props.pendingCount) + parseInt(props.approvedCount) + parseInt(props.declinedCount);
+    const dispatch = useDispatch();
+    const totalCount = parseInt(props.pendingCount) + parseInt(props.approvedCount) + parseInt(props.declinedCount);
+    const [tileState, setTileState] = useState(1);
+
+    const showApproved = () => {
+        if(tileState!=2) {
+            dispatch(statusFilter('APPROVED'));
+            dispatch(getStudentDetails());
+            setTileState(2);
+        }
+    };
+
+    const showDeclined = () => {
+        if(tileState!=3) {
+            dispatch(statusFilter('DECLINED'));
+            dispatch(getStudentDetails());
+            setTileState(3);
+        }
+    };
+
+    const showPending = () => {
+        if(tileState!=1) {
+            console.log('enters');
+            dispatch(statusFilter('PENDING'));
+            dispatch(getStudentDetails());
+            setTileState(1);
+        }
+    };
 
     return(
       <div>
         <span className="dashboardTitle"> Dashboard ({totalCount})</span>
         <br/><br/>
           <div className="gridContainer">
-            <div className="tile">            
-                <span className="statusCount">{props.pendingCount}</span><br/>
-                <span className="statusSpan">PENDING</span>
+              <div className={`tile ${tileState === 1 && 'purple'}`} onClick={() => showPending()}>
+                  <span className="statusCount">{props.pendingCount}</span><br/>
+                  <span className="statusSpan">PENDING</span>
               </div>
-            <div className="tile">            
-              <span className="statusCount">{props.approvedCount}</span><br/>
-              <span className="statusSpan">APPROVED</span>
+
+              <div className={`tile ${tileState === 2 && 'purple'}`} onClick={() => showApproved()}>
+                  <span className="statusCount">{props.approvedCount}</span><br/>
+                  <span className="statusSpan">APPROVED</span>
+              </div>
+              <div className={`tile ${tileState === 3 && 'purple'}`} onClick={() => showDeclined()}>
+                  <span className="statusCount">{props.declinedCount}</span><br/>
+                  <span className="statusSpan">DECLINED</span>
             </div>
-          <div className="tile">            
-          <span className="statusCount">{props.declinedCount}</span><br/>
-          <span className="statusSpan">DECLINED</span>
-        </div>       
         </div>
     </div>
     )

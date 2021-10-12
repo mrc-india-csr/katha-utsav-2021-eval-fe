@@ -1,5 +1,7 @@
 .dashboard-grid {
   margin: 1.25rem 4.75rem;
+  position: relative;
+  padding-bottom: 2rem;
 
   @media screen and (max-width: 1200px) {
     margin: 1.25rem;
@@ -57,6 +59,7 @@
       width: 14rem !important;
       display: flex;
       align-items: center;
+      cursor: pointer;
 
       img {
         margin-left: .2rem;
@@ -165,6 +168,29 @@
 
     img {
       margin-right: .5rem;
+    }
+  }
+
+  &__page-details {
+    display: flex;
+    font-size: 0.875rem;
+    color: #4F4F4F;
+    padding-left: 2rem;
+    position: absolute;
+    margin-top: .5rem;
+
+    @media screen and (max-width: 1200px) {
+      padding-left: 1rem;
+    }
+
+    @media screen and (max-width: 850px) {
+      padding-left: 0;
+    }
+
+    button {
+      border: none;
+      background-color: transparent;
+      color: #9FA2B4;
     }
   }
 }

@@ -7,7 +7,8 @@ import {
     unAssignStory,
     getStudentDetails,
     filterMine,
-    showModal
+    showModal,
+    updateCurrentDataset
 } from '../../client/actions/creators';
 import '../../styles/dashboard-grid.scss';
 import download from '../../client/assets/download.png';
@@ -17,6 +18,7 @@ import toggleOff from '../../client/assets/toggle-off.png';
 const DashboardGrid = (props) => {
     // console.log(props);
     const [toggle, setToggle] = useState(false);
+    let [paginationDetails, setPaginationDetails] = useState({limit: 10, index: 0, datasetIndex: 1});
     const dispatch = useDispatch();
     const storyActionHandler = (student_id, storyCategory, action, studentIndex, displayName) => {
         const category = storyCategory.replace(/[^a-zA-Z]/g,""); 
@@ -56,6 +58,27 @@ const DashboardGrid = (props) => {
         setToggle(!toggle);
     };
 
+    const fetchNextDataSet = () => {
+
+    };
+
+    const prevStep = () => {
+        paginationDetails.index!=0 && setPaginationDetails({...paginationDetails, index: --paginationDetails.index});
+    };
+
+    const nextStep = () => {
+        if(paginationDetails.limit*(paginationDetails.index+1) < 100) {
+            setPaginationDetails({...paginationDetails, index: ++paginationDetails.index});
+        }
+        else if (paginationDetails.limit*(paginationDetails.index+1) >= 100 && paginationDetails.datasetIndex < props.totalDataSet) {
+            dispatch(updateCurrentDataset(props.currentDataSet+1));
+            dispatch(getStudentDetails());
+
+        }
+    };
+
+    const studentArray = props.studentsList.slice(paginationDetails.limit*paginationDetails.index, paginationDetails.limit*(paginationDetails.index+1));
+
     return (
         <div className='dashboard-grid'>
             <div className='dashboard-grid__filters'>
@@ -73,25 +96,30 @@ const DashboardGrid = (props) => {
                     <th>Story Category</th>
                     <th>File</th>
                     <th>Status</th>
-                    <th className='dashboard-grid__header--assign'>Assigned To</th>
+                    {props.statusFilter === 'PENDING' && <th className='dashboard-grid__header--assign'>Assigned To</th>}
                 </tr>
-                {props.studentsList.map((obj, index) => {
+                {studentArray.length && studentArray.map((obj, index) => {
                     return (<tr className='dashboard-grid__body'>
                         <td>{obj.student_name}</td>
                         <td>{obj.class_name}</td>
                         <td>{obj.story_category_name}</td>
                         <td><img src={download} alt="" /><a href={obj.file_location_url}>Download File</a></td>
                         <td>{obj.evaluation_status || 'Pending'}</td>
-                        <td>{obj.jury_name || '--'}</td>
-                        {(obj.jury_email_id === null || obj.jury_email_id === props.juryEmailId) && <td> {obj.evaluation_status === 'IN REVIEW' 
+                        {props.statusFilter === 'PENDING' && <td>{obj.jury_name || '--'}</td>}
+                        {props.statusFilter === 'PENDING' && (obj.jury_email_id === null || obj.jury_email_id === props.juryEmailId) && <td> {obj.evaluation_status === 'IN REVIEW'
                         ? <div className='cta-wrapper'>
                             <button className='approve-cta' onClick={() => storyActionHandler(obj.student_id, obj.story_category_name, 1, index, obj.student_name)}>Approve</button>
                             <button className='decline-cta' onClick={() => storyActionHandler(obj.student_id, obj.story_category_name, 2, index, obj.student_name)}>Decline</button>
-                            <button className='unassign-cta' onClick={() => unAssignStoryHandler(obj.student_id, index)}>Un-Assign</button></div> 
+                            <button className='unassign-cta' onClick={() => unAssignStoryHandler(obj.student_id, index)}>Un-Assign</button></div>
                         : <button className='assign-to-me-cta' onClick={() => assignStoryHandler(obj.student_id, index)}>Assign to me</button>}</td>}
                     </tr>);
                 })}
-                {/*<div></div>*/}
+                <div className='dashboard-grid__page-details'>
+                    <div>{`${paginationDetails.index+1} of ${Math.ceil(props.totalCount/paginationDetails.limit) || 1}`}</div>
+                    <button onClick={() => prevStep()}>{`<`}</button>
+                    <button onClick={() => nextStep()}>{`>`}</button>
+                    <div>Total List Items - {props.totalCount}</div>
+                </div>
             </table>
         </div>
     );

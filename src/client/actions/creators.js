@@ -20,7 +20,8 @@ import {
   UPDATE_STORY_UN_ASSIGNED,
   UPDATE_ACCEPT_OR_DECLINED,
   UPDATE_JURY_EMAIL_ID,
-  FILTER_MINE
+  FILTER_MINE,
+  STATUS_FILTER
 } from "./types";
 
 export const setPendingStatusCount = data => {
@@ -109,4 +110,7 @@ export const updateJuryEmailId = data => {
 
 export const filterMine = data => {
   return {type: FILTER_MINE, data};
+}
+export const statusFilter = data => {
+  return {type: STATUS_FILTER, data};
 }
