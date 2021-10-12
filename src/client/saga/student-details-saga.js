@@ -5,7 +5,7 @@ import { takeEvery, call, put, select } from '@redux-saga/core/effects';
 
 export const updateStudentDetails = function*() {
   try {
-    const {dataSet,storyFilter, assignedOnly, statusFilter} = yield select(state => state.studentDetails);
+    const {dataSet, assignedOnly, storyFilter, statusFilter} = yield select(state => state.studentDetails);
     let params = {dataSet, assignedOnly, storyFilter, statusFilter};
     console.log(params);
     const { data } = yield call(makeApiCall, {
