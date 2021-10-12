@@ -14,7 +14,6 @@ import '../../styles/dashboard-grid.scss';
 import download from '../../client/assets/download.png';
 import toggleOn from '../../client/assets/toggle-on.png';
 import toggleOff from '../../client/assets/toggle-off.png';
-import {getStudentDetails} from '../../client/actions/creators'
 
 const DashboardGrid = (props) => {
     // console.log(props);
@@ -84,10 +83,10 @@ const DashboardGrid = (props) => {
         <div className='dashboard-grid'>
             <div className='dashboard-grid__filters'>
                 <div>Filters</div>
-                <button onClick={() => props.getUpdatedStories("All")}>{`All(${props.totalCount || 0})`}</button>
-                <button onClick={() => props.getUpdatedStories("Fiction")}>{`Fiction(${props.fictionCount || 0})`}</button>
-                <button onClick={() => props.getUpdatedStories("Non-Fiction")}>{`Non Fiction(${props.NonFictionCount || 0})`}</button>
-                <button onClick={() => props.getUpdatedStories('Poetry')}>{`Poetry(${props.poetryCount || 0})`}</button>
+                <button className = {'dashboard-grid__filters' + (props.storyFilter === 'All' ? '--selected' : '--default')} onClick={() => props.getUpdatedStories("All")}>{`All - ${props.totalCount || 0}`}</button>
+                <button className = {'dashboard-grid__filters' + (props.storyFilter === 'Fiction' ? '--selected' : '--default')} onClick={() => props.getUpdatedStories("Fiction")}>{`Fiction - ${props.fictionCount || 0}`}</button>
+                <button className = {'dashboard-grid__filters' + (props.storyFilter === 'Non-Fiction' ? '--selected' : '--default')} onClick={() => props.getUpdatedStories("Non-Fiction")}>{`Non Fiction - ${props.NonFictionCount || 0}`}</button>
+                <button className = {'dashboard-grid__filters' + (props.storyFilter === 'Poetry' ? '--selected' : '--default')} onClick={() => props.getUpdatedStories('Poetry')}>{`Poetry - ${props.poetryCount || 0}`}</button>
                 <button onClick={() => toggleFilterMine(toggle)} className='dashboard-grid__filters--filter'>Show only Assigned to me <img src={toggle ? toggleOn: toggleOff} alt="toggle" /></button>
             </div>
             <table>

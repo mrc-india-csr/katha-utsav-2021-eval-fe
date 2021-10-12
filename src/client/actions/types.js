@@ -21,3 +21,4 @@ export const UPDATE_STORY_UN_ASSIGNED = 'update_story_un_assigned';
 export const UPDATE_JURY_EMAIL_ID = 'update_jury_email_id';
 export const FILTER_MINE = 'filter_mine';
 export const STATUS_FILTER = 'status_filter';
+export const UPDATE_SELECTED_STORY_TYPE = 'update_selected_story_type';

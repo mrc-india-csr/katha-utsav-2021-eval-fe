@@ -21,7 +21,8 @@ import {
   UPDATE_ACCEPT_OR_DECLINED,
   UPDATE_JURY_EMAIL_ID,
   FILTER_MINE,
-  STATUS_FILTER
+  STATUS_FILTER,
+  UPDATE_SELECTED_STORY_TYPE,
 } from "./types";
 
 export const setPendingStatusCount = data => {
@@ -42,6 +43,10 @@ export const getStatusCount = () => {
 
 export const getStudentDetails = storyType => {
   return { type: GET_STUDENT_DETAILS, storyType };
+}
+
+export const updateSelectedStoryType = data => {
+  return { type: UPDATE_SELECTED_STORY_TYPE, data };
 }
 
 export const setStudentDetails = data => {
