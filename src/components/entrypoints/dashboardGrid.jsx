@@ -85,10 +85,10 @@ const DashboardGrid = (props) => {
 
     const updateStoryType = (type) => {
        switch (type) {
-           case 'All':{
+           case 'All':
                setTotal(props.totalCount);
                break;
-           }
+           
            case 'Fiction':
                setTotal(props.fictionCount);
                break;
