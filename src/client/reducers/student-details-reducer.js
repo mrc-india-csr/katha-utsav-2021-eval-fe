@@ -37,7 +37,7 @@ export default function(state= initialState, action) {
     case SET_STUDENT_DETAILS : {
       const newState = {
         ...state, 
-        studentsList: action.data
+        studentsList: (state.dataSet === 1) ? action.data : [...state.studentsList, ...action.data]
       }
       return newState;
     }
@@ -109,7 +109,7 @@ export default function(state= initialState, action) {
     case UPDATE_CURRENT_DATA_SET : {
       const newState = {
         ...state, 
-        currentDataSet: action.data
+        dataSet: action.data
       }
       
       return newState;

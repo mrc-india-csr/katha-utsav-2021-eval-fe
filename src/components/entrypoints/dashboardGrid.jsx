@@ -72,7 +72,7 @@ const DashboardGrid = (props) => {
             setPaginationDetails({...paginationDetails, index: ++paginationDetails.index});
         }
         else if (paginationDetails.limit*(paginationDetails.index+1) >= 100 && paginationDetails.datasetIndex < props.totalDataSet) {
-            dispatch(updateCurrentDataset(props.currentDataSet+1));
+            dispatch(updateCurrentDataset(props.dataSet+1));
             dispatch(getStudentDetails());
 
         }
@@ -81,6 +81,7 @@ const DashboardGrid = (props) => {
     const studentArray = props.studentsList.slice(paginationDetails.limit*paginationDetails.index, paginationDetails.limit*(paginationDetails.index+1));
 
     const updateStoryType = (type) => {
+        dispatch(updateCurrentDataset(1));
         dispatch(updateSelectedStoryType(type));
         dispatch(getStudentDetails());
     }
