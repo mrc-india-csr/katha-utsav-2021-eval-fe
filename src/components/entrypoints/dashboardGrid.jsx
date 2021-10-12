@@ -8,7 +8,8 @@ import {
     getStudentDetails,
     filterMine,
     showModal,
-    updateCurrentDataset
+    updateCurrentDataset,
+    updateSelectedStoryType
 } from '../../client/actions/creators';
 import '../../styles/dashboard-grid.scss';
 import download from '../../client/assets/download.png';
@@ -79,14 +80,19 @@ const DashboardGrid = (props) => {
 
     const studentArray = props.studentsList.slice(paginationDetails.limit*paginationDetails.index, paginationDetails.limit*(paginationDetails.index+1));
 
+    const updateStoryType = (type) => {
+        dispatch(updateSelectedStoryType(type));
+        dispatch(getStudentDetails());
+    }
+
     return (
         <div className='dashboard-grid'>
             <div className='dashboard-grid__filters'>
                 <div>Filters</div>
-                <button>{`All(${props.totalCount || 0})`}</button>
-                <button>{`Fiction(${props.fictionCount || 0})`}</button>
-                <button>{`Non Fiction(${props.NonFictionCount || 0})`}</button>
-                <button>{`Poetry(${props.poetryCount || 0})`}</button>
+                <button className = {'dashboard-grid__filters' + (props.storyFilter === 'All' ? '--selected' : '--default')} onClick={() => updateStoryType("All")}>{`All - ${props.totalCount || 0}`}</button>
+                <button className = {'dashboard-grid__filters' + (props.storyFilter === 'Fiction' ? '--selected' : '--default')} onClick={() => updateStoryType("Fiction")}>{`Fiction - ${props.fictionCount || 0}`}</button>
+                <button className = {'dashboard-grid__filters' + (props.storyFilter === 'Non-Fiction' ? '--selected' : '--default')} onClick={() => updateStoryType("Non-Fiction")}>{`Non Fiction - ${props.NonFictionCount || 0}`}</button>
+                <button className = {'dashboard-grid__filters' + (props.storyFilter === 'Poetry' ? '--selected' : '--default')} onClick={() => updateStoryType('Poetry')}>{`Poetry - ${props.poetryCount || 0}`}</button>
                 <button onClick={() => toggleFilterMine(toggle)} className='dashboard-grid__filters--filter'>Show only Assigned to me <img src={toggle ? toggleOn: toggleOff} alt="toggle" /></button>
             </div>
             <table>
@@ -147,5 +153,6 @@ const mapStateToProps = (state) => {
         juryEmailId: state.statusCount.juryEmailId
     }
 };
+
 
 export default connect(mapStateToProps) (DashboardGrid);

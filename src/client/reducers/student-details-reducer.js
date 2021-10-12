@@ -9,7 +9,8 @@ import { SET_STUDENT_DETAILS,
   UPDATE_ACCEPT_OR_DECLINED,
   UPDATE_STORY_UN_ASSIGNED,
   FILTER_MINE,
-  STATUS_FILTER
+  STATUS_FILTER,
+  UPDATE_SELECTED_STORY_TYPE
  } from "../actions/types";
 
 const initialState = {
@@ -53,6 +54,14 @@ export default function(state= initialState, action) {
       const newState = {
         ...state,
         statusFilter: action.data
+      }
+      return newState;
+    }
+    
+    case UPDATE_SELECTED_STORY_TYPE: {
+      const newState = {
+        ...state,
+        storyFilter: action.data
       }
       return newState;
     }
