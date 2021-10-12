@@ -109,14 +109,14 @@ const DashboardGrid = (props) => {
         setPaginationDetails({...paginationDetails, index: 0});
     }
 
-    const abc = (value) => {
+    const setPageCount = (value) => {
         setPaginationDetails({...paginationDetails, index: 0});
         setTotal(value);
     };
 
     return (
         <React.Fragment>
-            <StatusTile clickAction={abc}/>
+            <StatusTile clickAction={setPageCount}/>
             <div className='dashboard-grid'>
                 <div className='dashboard-grid__filters'>
                     <div>Filters</div>
