@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import { connect } from 'react-redux';
 import '../../styles/statusTile.scss';
 import { useDispatch } from 'react-redux';
-import {getStudentDetails, statusFilter} from '../../client/actions/creators';
+import {getStudentDetails, statusFilter, updateCurrentDataset} from '../../client/actions/creators';
 
 const StatusTile = (props) => {
 
@@ -12,6 +12,7 @@ const StatusTile = (props) => {
 
     const showApproved = () => {
         if(tileState!=2) {
+            dispatch(updateCurrentDataset(1));
             dispatch(statusFilter('APPROVED'));
             dispatch(getStudentDetails());
             setTileState(2);
@@ -21,6 +22,7 @@ const StatusTile = (props) => {
 
     const showDeclined = () => {
         if(tileState!=3) {
+            dispatch(updateCurrentDataset(1));
             dispatch(statusFilter('DECLINED'));
             dispatch(getStudentDetails());
             setTileState(3);

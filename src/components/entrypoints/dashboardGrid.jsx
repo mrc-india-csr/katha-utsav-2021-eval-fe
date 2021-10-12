@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import {
-    acceptOrDeclineStory,
     assignStory,
     unAssignStory,
     getStudentDetails,
@@ -86,10 +85,10 @@ const DashboardGrid = (props) => {
 
     const updateStoryType = (type) => {
        switch (type) {
-           case 'All':
+           case 'All':{
                setTotal(props.totalCount);
                break;
-
+           }
            case 'Fiction':
                setTotal(props.fictionCount);
                break;
@@ -102,15 +101,14 @@ const DashboardGrid = (props) => {
                setTotal(props.poetryCount);
                break;
        }
-
         dispatch(updateCurrentDataset(1));
         dispatch(updateSelectedStoryType(type));
         dispatch(getStudentDetails());
-        setPaginationDetails({...paginationDetails, index: 0});
+        setPaginationDetails({...paginationDetails, index: 0, datasetIndex: 1});
     }
 
     const setPageCount = (value) => {
-        setPaginationDetails({...paginationDetails, index: 0});
+        setPaginationDetails({...paginationDetails, index: 0, datasetIndex: 1});
         setTotal(value);
     };
 
@@ -135,7 +133,7 @@ const DashboardGrid = (props) => {
                         <th>Status</th>
                         {props.statusFilter === 'PENDING' && <th className='dashboard-grid__header--assign'>Assigned To</th>}
                     </tr>
-                    {studentArray.length && studentArray.map((obj, index) => {
+                    {(studentArray.length > 0) && studentArray.map((obj, index) => {
                         return (<tr className='dashboard-grid__body'>
                             <td>{obj.student_name}</td>
                             <td>{obj.class_name}</td>
