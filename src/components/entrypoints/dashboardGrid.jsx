@@ -132,6 +132,7 @@ const DashboardGrid = (props) => {
                         <th>File</th>
                         <th>Status</th>
                         {props.statusFilter === 'PENDING' && <th className='dashboard-grid__header--assign'>Assigned To</th>}
+                        <th></th>
                     </tr>
                     {(studentArray.length > 0) && studentArray.map((obj, index) => {
                         return (<tr className='dashboard-grid__body'>
