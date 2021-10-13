@@ -12,8 +12,8 @@ import {
 } from '../../client/actions/creators';
 import '../../styles/dashboard-grid.scss';
 import download from '../../client/assets/download.png';
-import toggleOn from '../../client/assets/toggle-on.png';
-import toggleOff from '../../client/assets/toggle-off.png';
+import toggleOn from '../../client/assets/toggle-on.svg';
+import toggleOff from '../../client/assets/toggle-off.svg';
 import StatusTile from './statusTile';
 
 const DashboardGrid = (props) => {
@@ -132,6 +132,7 @@ const DashboardGrid = (props) => {
                         <th>File</th>
                         <th>Status</th>
                         {props.statusFilter === 'PENDING' && <th className='dashboard-grid__header--assign'>Assigned To</th>}
+                        <th></th>
                     </tr>
                     {(studentArray.length > 0) && studentArray.map((obj, index) => {
                         return (<tr className='dashboard-grid__body'>
@@ -149,18 +150,18 @@ const DashboardGrid = (props) => {
                                 : <button className='assign-to-me-cta' onClick={() => assignStoryHandler(obj.student_id, index)}>Assign to me</button>}</td>}
                         </tr>);
                     })}
-                    <div className='dashboard-grid__page-details'>
-                        <div>{`${paginationDetails.index+1} of ${Math.ceil((total || props.totalCount)/paginationDetails.limit) || 1}`}</div>
-                        <button onClick={() => prevStep()}>{`<`}</button>
-                        <button onClick={() => nextStep()}>{`>`}</button>
-                        <div>Total List Items - {props.totalCount}</div>
-                        <div className='dashboard-grid__page-details--count'>
-                            Number of List Items per page : <button onClick={() => changePageCount(10)} className={`${paginationDetails.limit === 10 && 'box'}`}>10</button>
-                            <button onClick={() => changePageCount(50)} className={`${paginationDetails.limit === 50 && 'box'}`}>50</button>
-                            <button onClick={() => changePageCount(100)} className={`${paginationDetails.limit === 100 && 'box'}`}>100</button>
-                        </div>
-                    </div>
                 </table>
+                <div className='dashboard-grid__page-details'>
+                    <div>{`${paginationDetails.index+1} of ${Math.ceil((total || props.totalCount)/paginationDetails.limit) || 1}`}</div>
+                    <button onClick={() => prevStep()}>{`<`}</button>
+                    <button onClick={() => nextStep()}>{`>`}</button>
+                    <div>Total List Items - {props.totalCount}</div>
+                    <div className='dashboard-grid__page-details--count'>
+                        Number of List Items per page : <button onClick={() => changePageCount(10)} className={`${paginationDetails.limit === 10 && 'box'}`}>10</button>
+                        <button onClick={() => changePageCount(50)} className={`${paginationDetails.limit === 50 && 'box'}`}>50</button>
+                        <button onClick={() => changePageCount(100)} className={`${paginationDetails.limit === 100 && 'box'}`}>100</button>
+                    </div>
+                </div>
             </div>
         </React.Fragment>
     );

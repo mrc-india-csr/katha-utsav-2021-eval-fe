@@ -1,7 +1,6 @@
 .dashboard-grid {
   margin: 1.25rem 4.75rem;
-  position: relative;
-  padding-bottom: 2rem;
+  padding-bottom: 4rem;
 
   @media screen and (max-width: 1200px) {
     margin: 1.25rem;
@@ -16,6 +15,7 @@
     border-spacing: 0;
     border-collapse: collapse;
     border: 1px solid #DFE0EB;
+    background-color: #fff;
   }
 
   &__filters {
@@ -28,6 +28,9 @@
     align-items: center;
     padding: 0 1.5rem;
     position: relative;
+    border: 1px solid #DFE0EB;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
 
     @media screen and (max-width: 700px) {
       font-size: .5rem;
@@ -43,6 +46,7 @@
       border-radius: 100px;
       margin-left: 1rem;
       width: 8rem;
+      cursor: pointer;
 
       @media screen and (max-width: 700px) {
         font-size: .5rem;
@@ -148,11 +152,18 @@
 
       .cta-wrapper {
         display: flex;
+        @media screen and (max-width: 700px) {
+          justify-content: center;
+        }
 
         button {
           margin: 0 0.5rem;
           border-radius: 4px;
           cursor: pointer;
+
+          @media screen and (max-width: 700px) {
+            font-size: 0.5rem;
+          }
         }
 
         .approve-cta {
@@ -170,8 +181,11 @@
         .unassign-cta {
           color: #000000;
           border: 1px solid #000000;
-          width: 76px;
           height: 30px;
+
+          @media screen and (min-width: 700px) {
+            width: 76px;
+          }
         }
       }
     }
@@ -184,7 +198,6 @@
         text-align: center;
         font-size: 0.688rem;
         background-color: rgba(0, 0, 0, 0.1);
-        margin: auto;
         height: 1rem;
         padding-top: .3rem;
         width: 6rem;
@@ -225,8 +238,12 @@
     font-size: 0.875rem;
     color: #4F4F4F;
     padding-left: 2rem;
-    position: absolute;
-    margin-top: .5rem;
+    height: 3.75rem;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #DFE0EB;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
 
     @media screen and (max-width: 1200px) {
       padding-left: 1rem;
