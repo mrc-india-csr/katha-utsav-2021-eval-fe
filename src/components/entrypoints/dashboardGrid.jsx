@@ -56,10 +56,11 @@ const DashboardGrid = (props) => {
 
     const toggleFilterMine = (toggle) => {
         console.log('filter my stories');
+        dispatch(updateCurrentDataset(1));
         dispatch(filterMine(!toggle));
         dispatch(getStudentDetails());
         setToggle(!toggle);
-        setPaginationDetails({...paginationDetails, index: 0});
+        setPaginationDetails({...paginationDetails, index: 0, datasetIndex: 1});
     };
 
     const changePageCount = (value) => {
