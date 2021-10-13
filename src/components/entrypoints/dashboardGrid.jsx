@@ -29,7 +29,7 @@ const DashboardGrid = (props) => {
             id: student_id,
             storyAction: action,
             storyCategory: category,
-            studentIndex
+            studentIndex: (paginationDetails.index)*(paginationDetails.limit)+studentIndex
         }
         const data = {
             evaluationParams,
@@ -39,10 +39,10 @@ const DashboardGrid = (props) => {
     };
 
     const assignStoryHandler = (student_id, studentIndex) => {
-        console.log('Assign handler clicked');
+        console.log('Assign handler clicked',(paginationDetails.index)*(paginationDetails.limit)+studentIndex);
         dispatch(assignStory({
             id: student_id,
-            studentIndex
+            studentIndex: (paginationDetails.index)*(paginationDetails.limit)+studentIndex
         }));
     };
 
@@ -50,7 +50,7 @@ const DashboardGrid = (props) => {
         console.log('unAssign handler clicked');
         dispatch(unAssignStory({
             id: student_id,
-            studentIndex
+            studentIndex: (paginationDetails.index)*(paginationDetails.limit)+studentIndex
         }));
     };
 
