@@ -21,6 +21,7 @@ const generateHtml = (entry) => {
     return new HtmlWebpackPlugin({
       chunks: [i],
       filename: `../views/pages/${i}.ejs`,
+      favicon: `./src/client/assets/Kathaicon.ico`,
       template: path.join('src', 'views', 'pages', 'template.ejs')
     })
   })
