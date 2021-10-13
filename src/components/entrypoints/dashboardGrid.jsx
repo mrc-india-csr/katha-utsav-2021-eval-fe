@@ -12,8 +12,8 @@ import {
 } from '../../client/actions/creators';
 import '../../styles/dashboard-grid.scss';
 import download from '../../client/assets/download.png';
-import toggleOn from '../../client/assets/toggle-on.png';
-import toggleOff from '../../client/assets/toggle-off.png';
+import toggleOn from '../../client/assets/toggle-on.svg';
+import toggleOff from '../../client/assets/toggle-off.svg';
 import StatusTile from './statusTile';
 
 const DashboardGrid = (props) => {
