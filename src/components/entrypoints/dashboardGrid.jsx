@@ -19,7 +19,7 @@ import StatusTile from './statusTile';
 const DashboardGrid = (props) => {
     // console.log(props);
     const [toggle, setToggle] = useState(false);
-    const [total, setTotal] = useState(0);
+    const [filter, setFilter] = useState(false);
     const [paginationDetails, setPaginationDetails] = useState({limit: 10, index: 0, datasetIndex: 1});
     const dispatch = useDispatch();
 
@@ -71,7 +71,7 @@ const DashboardGrid = (props) => {
     };
 
     const nextStep = () => {
-        if((paginationDetails.limit*(paginationDetails.index+1) < 100*paginationDetails.datasetIndex) && paginationDetails.index+1 < (total || props.totalCount)/paginationDetails.limit) {
+        if((paginationDetails.limit*(paginationDetails.index+1) < 100*paginationDetails.datasetIndex) && paginationDetails.index+1 < (toggle || filter ? props.studentsList.length : props.totalCount)/paginationDetails.limit) {
             setPaginationDetails({...paginationDetails, index: ++paginationDetails.index});
         }
         else if (paginationDetails.limit*(paginationDetails.index+1) >= 100*paginationDetails.datasetIndex && paginationDetails.datasetIndex < props.totalDataSet) {
@@ -85,22 +85,16 @@ const DashboardGrid = (props) => {
 
     const updateStoryType = (type) => {
        switch (type) {
-           case 'All':
-               setTotal(props.totalCount);
-               break;
-           
+
            case 'Fiction':
-               setTotal(props.fictionCount);
-               break;
 
            case 'Non-Fiction':
-               setTotal(props.NonFictionCount);
-               break;
 
            case 'Poetry':
-               setTotal(props.poetryCount);
+               setFilter(true);
                break;
        }
+
         dispatch(updateCurrentDataset(1));
         dispatch(updateSelectedStoryType(type));
         dispatch(getStudentDetails());
@@ -109,7 +103,7 @@ const DashboardGrid = (props) => {
 
     const setPageCount = (value) => {
         setPaginationDetails({...paginationDetails, index: 0, datasetIndex: 1});
-        setTotal(value);
+        updateStoryType("All");
     };
 
     return (
@@ -152,7 +146,7 @@ const DashboardGrid = (props) => {
                     })}
                 </table>
                 {(props.totalCount > 0) && <div className='dashboard-grid__page-details'>
-                    <div>{`${paginationDetails.index+1} of ${Math.ceil((total || props.totalCount)/paginationDetails.limit) || 1}`}</div>
+                    <div>{`${paginationDetails.index+1} of ${Math.ceil((toggle || filter ? props.studentsList.length : props.totalCount)/paginationDetails.limit) || 1}`}</div>
                     <button onClick={() => prevStep()}>{`<`}</button>
                     <button onClick={() => nextStep()}>{`>`}</button>
                     <div>Total List Items - {props.totalCount}</div>
