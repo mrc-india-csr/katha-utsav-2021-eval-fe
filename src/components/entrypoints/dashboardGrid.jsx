@@ -59,7 +59,7 @@ const DashboardGrid = (props) => {
         dispatch(filterMine(!toggle));
         dispatch(getStudentDetails());
         setToggle(!toggle);
-        setPaginationDetails({...paginationDetails, index: 0})
+        setPaginationDetails({...paginationDetails, index: 0});
     };
 
     const changePageCount = (value) => {
@@ -151,7 +151,7 @@ const DashboardGrid = (props) => {
                         </tr>);
                     })}
                 </table>
-                <div className='dashboard-grid__page-details'>
+                {(props.totalCount > 0) && <div className='dashboard-grid__page-details'>
                     <div>{`${paginationDetails.index+1} of ${Math.ceil((total || props.totalCount)/paginationDetails.limit) || 1}`}</div>
                     <button onClick={() => prevStep()}>{`<`}</button>
                     <button onClick={() => nextStep()}>{`>`}</button>
@@ -161,7 +161,7 @@ const DashboardGrid = (props) => {
                         <button onClick={() => changePageCount(50)} className={`${paginationDetails.limit === 50 && 'box'}`}>50</button>
                         <button onClick={() => changePageCount(100)} className={`${paginationDetails.limit === 100 && 'box'}`}>100</button>
                     </div>
-                </div>
+                </div>}
             </div>
         </React.Fragment>
     );
